@@ -1,0 +1,44 @@
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+.vscode/*
+.idea/*
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Gatsby files
+.cache/
+
+# Next.js build output
+.next
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Optional eslint cache
+.eslintcache
