@@ -4,6 +4,7 @@
 *.msix
 *.msm
 *.msp
+*.vercel
 
 
 
