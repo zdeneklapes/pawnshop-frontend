@@ -12,9 +12,9 @@ executors:
 jobs:
   deploy-dev:
     docker:
-      - image: cimg/base:latets
-      environment:
-        VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_DEV
+      - image: cimg/base:latest
+        environment:
+          VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_DEV
     steps:
       - checkout
       - run:
