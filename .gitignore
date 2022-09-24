@@ -46,3 +46,4 @@ $RECYCLE.BIN/
 .eslintcache
 
 node_modules
+.vercel

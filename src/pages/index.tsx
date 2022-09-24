@@ -2,8 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
-  const a = 4
-
   return (
     <div>
       <Head>
