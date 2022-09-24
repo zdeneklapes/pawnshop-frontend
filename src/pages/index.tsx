@@ -2,8 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
-   const a = 4
-
   return (
     <div>
       <Head>
@@ -13,7 +11,7 @@ const Home: NextPage = () => {
 
       <main>
         <h1 className="text-3xl font-bold underline">INDEX PAGE</h1>
-        <h1 className="text-3xl font-bold underline">INDEX PAGE2 test fro circleci {{a}}</h1>
+        <h1 className="text-3xl font-bold underline">INDEX PAGE2 test fro circleci </h1>
       </main>
     </div>
   )
