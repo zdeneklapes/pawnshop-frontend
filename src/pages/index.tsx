@@ -13,6 +13,7 @@ const Home: NextPage = () => {
 
       <main>
         <h1 className="text-3xl font-bold underline">INDEX PAGE</h1>
+        <h1 className="text-3xl font-bold underline">INDEX PAGE2 test fro circleci</h1>
       </main>
     </div>
   )
