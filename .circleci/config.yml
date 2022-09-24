@@ -12,6 +12,8 @@ executors:
 jobs:
   deploy-dev:
     machine: true
+    environment:
+      VERCEL_PROJECT_ID: ${VERCEL_PROJECT_ID_DEV}
     steps:
       - checkout
       - run:
@@ -19,7 +21,6 @@ jobs:
           command: |
             set -x
             npm install --global vercel@latest
-            export VERCEL_PROJECT_ID=${VERCEL_PROJECT_ID_DEV}
             vercel pull --yes --environment=preview --token=${VERCEL_TOKEN}
             vercel build --token=${VERCEL_TOKEN}
             vercel deploy --prebuilt --token=${VERCEL_TOKEN}
@@ -27,6 +28,8 @@ jobs:
 
   deploy-main:
     machine: true
+    environment:
+      VERCEL_PROJECT_ID: ${VERCEL_PROJECT_ID_MAIN}
     steps:
       - checkout
       - run:
@@ -34,7 +37,6 @@ jobs:
           command: |
             set -x
             npm install --global vercel@latest
-            export VERCEL_PROJECT_ID=${VERCEL_PROJECT_ID_MAIN}
             vercel pull --yes --environment=production --token=${VERCEL_TOKEN}
             vercel build --prod --token=${VERCEL_TOKEN}
             vercel deploy --prebuilt --prod --token=${VERCEL_TOKEN}
