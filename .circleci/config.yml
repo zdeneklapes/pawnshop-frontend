@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and Deploy to Vercel
+          name: Build and Deploy to Vercel DEV
           command: |
             set -x
             npm install --global vercel@latest
@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and Deploy to Vercel
+          name: Build and Deploy to Vercel PROD
           command: |
             set -x
             npm install --global vercel@latest
