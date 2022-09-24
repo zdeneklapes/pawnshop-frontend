@@ -12,7 +12,7 @@ executors:
 jobs:
   deploy-dev:
     docker:
-      - image: cimg/base:2022.09
+      - image: cimg/node:18.9.0
         environment:
           VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_DEV
     steps:
