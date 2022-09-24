@@ -11,9 +11,10 @@ executors:
 
 jobs:
   deploy-dev:
-    machine: true
-    environment:
-      VERCEL_PROJECT_ID: ${VERCEL_PROJECT_ID_DEV}
+    docker:
+      - image: cimg/base:latets
+      environment:
+        VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_DEV
     steps:
       - checkout
       - run:
@@ -29,7 +30,7 @@ jobs:
   deploy-main:
     machine: true
     environment:
-      VERCEL_PROJECT_ID: ${VERCEL_PROJECT_ID_MAIN}
+      VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_MAIN
     steps:
       - checkout
       - run:
