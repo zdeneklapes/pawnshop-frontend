@@ -9,6 +9,16 @@ executors:
       - image: zlapik/pawnshop-backend_backend
 
 jobs:
+  lint:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name:
+          command: |
+            sudo pip3 install pre-commit
+            pre-commit run --all-files
+
   deploy-dev:
     machine: true
     steps:
@@ -40,6 +50,7 @@ jobs:
 workflows:
   deploy:
     jobs:
+      - lint
       - deploy-dev:
           filters:
             branches:
