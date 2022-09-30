@@ -70,6 +70,7 @@ const ProductForm = () => {
                   options={nameOptions}
                   label="Meno"
                   onChange={(value) => formik.setFieldValue('name', value)}
+                  value={formik.values.name}
                 />
                 <Input
                   name="address"
@@ -88,6 +89,7 @@ const ProductForm = () => {
                   label="Národnosť"
                   options={nationalityOptions}
                   onChange={(value) => formik.setFieldValue('nationality', value)}
+                  value={formik.values.nationality}
                 />
               </div>
               <div className="flex space-x-10 items-center justify-center">
@@ -134,9 +136,9 @@ const ProductForm = () => {
               </div>
             </div>
 
-            {/*<button type="submit" className="rounded-xl border border-blue-400 p-2">*/}
-            {/*  Potvrdit*/}
-            {/*</button>*/}
+            <button type="submit" className="rounded-xl border border-blue-400 p-2">
+              Potvrdit
+            </button>
           </form>
         )}
       </Formik>
