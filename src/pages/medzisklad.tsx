@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { MainLayout } from '@components/big/MainLayout'
-
+import { ProductForm } from '@components/Forms/ProductForm'
 const Medzisklad: NextPage = () => {
   return (
     <div>
@@ -12,7 +12,9 @@ const Medzisklad: NextPage = () => {
 
       <main>
         <MainLayout>
-          <div>Medzisklad</div>
+          <div className="flex items-center justify-center w-full">
+            <ProductForm />
+          </div>
         </MainLayout>
       </main>
     </div>

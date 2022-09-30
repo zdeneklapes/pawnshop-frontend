@@ -1,4 +1,4 @@
-const options = ['option1', 'option2', 'option3', 'option4']
+const options = ['Obsluha', 'Statistiky', 'Tisk', 'Odhlasit']
 
 const SidebarProps = () => {
   return (
