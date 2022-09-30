@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { FC, ChangeEvent, MouseEvent } from 'react'
 
-interface InputProps {
+interface InputNumberProps {
   placeholder?: string
   onClick?: (e: MouseEvent<HTMLInputElement>) => void
   type?: 'number' | 'text'
@@ -9,15 +9,16 @@ interface InputProps {
   id?: string
   label?: string
   name: string
-  onChange?: (value: string | undefined) => void
+  onChange: (value: string | undefined) => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
   classNameInput?: string
   disabled?: boolean
   errored?: boolean
+  isDecimal?: boolean
 }
 
-const Input: FC<InputProps> = ({
+const InputNumber: FC<InputNumberProps> = ({
   className,
   classNameInput,
   id,
@@ -30,11 +31,16 @@ const Input: FC<InputProps> = ({
   value,
   placeholder = '',
   disabled = false,
-  errored = false
+  errored = false,
+  isDecimal = false
 }) => {
+  const getRegex = () => {
+    return isDecimal ? /^(\d*|\d+)$/ : /^(\d*|\d+\.?\d{0,2})$/
+  }
   return (
     <div className={clsx(className, 'group')}>
       <div className="text-md pl-1 group-hover:text-black font-semibold text-gray-800">{label}</div>
+
       <input
         className={clsx(
           classNameInput,
@@ -45,15 +51,15 @@ const Input: FC<InputProps> = ({
         id={id}
         name={name}
         onBlur={onBlur}
-        onChange={(e) => (onChange ? onChange(e.target.value) : null)}
+        onChange={(e) => onChange(e.target.value.match(getRegex()) ? e.target.value : value)}
         onClick={onClick}
         placeholder={placeholder}
         type={type}
-        value={value}
+        value={Number(value) === 0 ? '' : value}
         disabled={disabled}
       />
     </div>
   )
 }
 
-export default Input
+export default InputNumber
