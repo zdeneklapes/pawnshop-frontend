@@ -4,6 +4,7 @@
 *.msix
 *.msm
 *.msp
+*.vercel
 
 
 
@@ -46,3 +47,4 @@ $RECYCLE.BIN/
 .eslintcache
 
 node_modules
+.vercel
