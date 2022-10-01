@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { format, addWeeks } from 'date-fns'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
@@ -22,12 +22,10 @@ export interface ProductValuesProps {
   interestRateOrAmount: string
   startDate: string
   endDate: string
-  extendedDate: string
   productId: string
   productName: string
   productBuy: string
   productSell: string
-  amount: string
 }
 
 const PRODUCT_INIT_VALUES: ProductValuesProps = {
@@ -48,7 +46,30 @@ const PRODUCT_INIT_VALUES: ProductValuesProps = {
   productBuy: '',
   productSell: ''
 }
-const nameOptions = ['option1', 'option2']
+
+const customers = [
+  {
+    name: 'andrej',
+    address: 'add1',
+    sex: 'male',
+    nationality: 'SK',
+    personalId: '40444',
+    personalIdDate: '12/12/1212',
+    birthPlace: 'Brno',
+    birthId: '10001'
+  },
+  {
+    name: 'andrej222',
+    address: 'add1222',
+    sex: 'female',
+    nationality: 'DE',
+    personalId: '40444222',
+    personalIdDate: '12/12/1222',
+    birthPlace: 'Kosice',
+    birthId: '10001222'
+  }
+]
+
 const SEX_OPTIONS = [
   { value: 'male', label: 'Muž' },
   { value: 'female', label: 'Žena' }
@@ -88,13 +109,21 @@ const STYLE_ROW_FORM = 'flex items-center justify-between space-x-5 mx-5'
 const ProductForm = () => {
   const [isBuy, setIsBuy] = useState<boolean | string>(false)
 
+  const customerNames = useMemo(() => customers.map((customer) => customer.name), customers) // todo useMemo() or useEffect()
+
+  const calculatePrice = (price?: string, interest?: string) => {
+    const buyPrice = Number(price)
+    const interestNum = interest === '' ? 0 : Number(interest) / 100
+    return buyPrice + interestNum * buyPrice * 4
+  }
+
   const handleSubmit = (values: ProductValuesProps) => {
     console.log(values)
   }
   return (
     <div className="p-8 border rounded-xl border-gray-500 shadow-2xl">
       <Formik initialValues={PRODUCT_INIT_VALUES} validationSchema={PRODUCT_SCHEMA} onSubmit={handleSubmit}>
-        {({ values, errors, handleSubmit, setFieldValue, resetForm, touched }) => {
+        {({ values, errors, handleSubmit, setFieldValue, touched, setValues }) => {
           return (
             <form onSubmit={handleSubmit}>
               <div className="divide-y divide-gray-400">
@@ -115,10 +144,20 @@ const ProductForm = () => {
                   </div>
                   <div className={STYLE_ROW_FORM}>
                     <Combobox
-                      options={nameOptions}
+                      options={customerNames}
                       label="Meno"
                       onChange={(value) => {
                         setFieldValue('name', value)
+                        const customer = customers.find((customer) => customer.name === value)
+                        if (customer) {
+                          setFieldValue('address', customer.address)
+                          setFieldValue('sex', customer.sex)
+                          setFieldValue('nationality', customer.nationality)
+                          setFieldValue('personalId', customer.personalId)
+                          setFieldValue('personalIdDate', customer.personalIdDate)
+                          setFieldValue('birthPlace', customer.birthPlace)
+                          setFieldValue('birthId', customer.birthId)
+                        }
                       }}
                       value={values.name}
                       errored={!!(errors.name && touched.name)}
@@ -204,14 +243,24 @@ const ProductForm = () => {
                         name="productBuy"
                         label={isBuy ? 'Nákup' : 'Pújička'}
                         value={values.productBuy}
-                        onChange={(value) => setFieldValue('productBuy', value)}
+                        onChange={(value) => {
+                          setFieldValue('productBuy', value)
+                          if (!isBuy) {
+                            setFieldValue('productSell', calculatePrice(value, values.interestRateOrAmount))
+                          }
+                        }}
                         errored={!!(errors.productBuy && touched.productBuy)}
                       />
                       <InputNumber
                         classNameInput="w-16"
                         name="interestRateOrAmount"
                         label={isBuy ? 'ks' : '%'}
-                        onChange={(value) => setFieldValue('interestRateOrAmount', value)}
+                        onChange={(value) => {
+                          setFieldValue('interestRateOrAmount', value)
+                          if (!isBuy) {
+                            setFieldValue('productSell', calculatePrice(values.productBuy, value))
+                          }
+                        }}
                         value={values.interestRateOrAmount}
                         errored={!!(errors.interestRateOrAmount && touched.interestRateOrAmount)}
                         isDecimal={!!isBuy}
@@ -243,7 +292,7 @@ const ProductForm = () => {
                     <Button
                       className="w-32 hover:text-red-800 hover:border-red-800"
                       onClick={() => {
-                        resetForm()
+                        setValues(PRODUCT_INIT_VALUES)
                       }}
                       text="Vyčistiť"
                     />
