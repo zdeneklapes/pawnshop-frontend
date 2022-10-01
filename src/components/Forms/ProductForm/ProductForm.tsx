@@ -9,6 +9,8 @@ import { Combobox } from '@components/small/Combobox'
 import { Radio } from '@components/small/Radio'
 import { Button } from '@components/small/Button'
 
+import { apiService } from '@api/service'
+
 export interface ProductValuesProps {
   isBuy: boolean
   name: string
@@ -114,16 +116,40 @@ const ProductForm = () => {
   const calculatePrice = (price?: string, interest?: string) => {
     const buyPrice = Number(price)
     const interestNum = interest === '' ? 0 : Number(interest) / 100
-    return buyPrice + interestNum * buyPrice * 4
+    const priceWithInterest = buyPrice + interestNum * buyPrice * 4
+    return Math.ceil(priceWithInterest / 5) * 5
   }
 
   const handleSubmit = (values: ProductValuesProps) => {
-    console.log(values)
+    const jsonObject = {
+      is_buy: values.isBuy,
+      name: values.name,
+      address: values.address,
+      sex: values.sex,
+      nationality: values.nationality,
+      personal_id: values.personalId,
+      personal_id_date: values.personalIdDate,
+      birth_place: values.birthPlace,
+      birth_id: values.birthId,
+      interest_rate_or_amount: Number(values.interestRateOrAmount),
+      start_date: values.startDate,
+      end_date: values.endDate,
+      product_id: Number(values.productId),
+      product_name: values.productName,
+      product_buy: Number(values.productBuy),
+      product_sell: Number(values.productSell)
+    }
+    try {
+      apiService.post(`todo`, { json: jsonObject })
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   }
   return (
     <div className="p-8 border rounded-xl border-gray-500 shadow-2xl">
       <Formik initialValues={PRODUCT_INIT_VALUES} validationSchema={PRODUCT_SCHEMA} onSubmit={handleSubmit}>
-        {({ values, errors, handleSubmit, setFieldValue, touched, setValues }) => {
+        {({ values, errors, handleSubmit, setFieldValue, touched, resetForm }) => {
           return (
             <form onSubmit={handleSubmit}>
               <div className="divide-y divide-gray-400">
@@ -250,6 +276,7 @@ const ProductForm = () => {
                           }
                         }}
                         errored={!!(errors.productBuy && touched.productBuy)}
+                        isDecimal
                       />
                       <InputNumber
                         classNameInput="w-16"
@@ -292,7 +319,7 @@ const ProductForm = () => {
                     <Button
                       className="w-32 hover:text-red-800 hover:border-red-800"
                       onClick={() => {
-                        setValues(PRODUCT_INIT_VALUES)
+                        resetForm()
                       }}
                       text="Vyčistiť"
                     />

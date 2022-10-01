@@ -3,13 +3,13 @@ import { FC } from 'react'
 
 interface ButtonProps {
   onClick?: () => void
-  type?: 'submit'
+  type?: 'submit' | 'button'
   className?: string
   disabled?: boolean
   text: string
 }
 
-const Button: FC<ButtonProps> = ({ className, onClick, type, disabled = false, text }) => {
+const Button: FC<ButtonProps> = ({ className, onClick, type = 'button', disabled = false, text }) => {
   return (
     <button
       disabled={disabled}

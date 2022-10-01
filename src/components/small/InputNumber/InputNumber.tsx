@@ -57,6 +57,7 @@ const InputNumber: FC<InputNumberProps> = ({
         type={type}
         value={Number(value) === 0 ? '' : value}
         disabled={disabled}
+        autoComplete="off"
       />
     </div>
   )

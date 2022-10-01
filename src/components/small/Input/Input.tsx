@@ -51,6 +51,7 @@ const Input: FC<InputProps> = ({
         type={type}
         value={value}
         disabled={disabled}
+        autoComplete="off"
       />
     </div>
   )
