@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { MainLayout } from '@components/big/MainLayout'
+import { Navbar } from '@components/medium/Navbar'
 
 const Bazar: NextPage = () => {
   return (
@@ -11,6 +12,7 @@ const Bazar: NextPage = () => {
       </Head>
 
       <MainLayout>
+        <Navbar />
         <div>Bazar</div>
       </MainLayout>
     </div>

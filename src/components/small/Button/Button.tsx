@@ -7,9 +7,19 @@ interface ButtonProps {
   className?: string
   disabled?: boolean
   text: string
+  submit?: boolean
+  cancel?: boolean
 }
 
-const Button: FC<ButtonProps> = ({ className, onClick, type = 'button', disabled = false, text }) => {
+const Button: FC<ButtonProps> = ({
+  className,
+  onClick,
+  type = 'button',
+  disabled = false,
+  text,
+  cancel = false,
+  submit = false
+}) => {
   return (
     <button
       disabled={disabled}
@@ -17,8 +27,11 @@ const Button: FC<ButtonProps> = ({ className, onClick, type = 'button', disabled
       type={type}
       className={clsx(
         className,
-        'border border-gray-400 rounded p-2 hover:border-black hover:bg-gray-50 hover:font-medium placeholder-green-700 focus:bg-gray-50 outline-black',
-        { 'group-hover:border-gray-400': disabled }
+        'border border-gray-400 rounded p-2  hover:bg-gray-50 hover:font-medium placeholder-green-700 focus:bg-gray-50 outline-black',
+        { 'hover:border-gray-400': disabled },
+        { 'hover:text-green-800 hover:border-green-800': submit },
+        { 'hover:text-red-800 hover:border-red-800': cancel },
+        { 'hover:border-black': !cancel && !submit }
       )}
     >
       {text}
