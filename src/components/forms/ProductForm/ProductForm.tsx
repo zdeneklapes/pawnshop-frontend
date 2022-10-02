@@ -1,7 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { format, addWeeks } from 'date-fns'
 import { Formik } from 'formik'
-import { object, string } from 'yup'
 
 import { Input } from '@components/small/Input'
 import { InputNumber } from '@components/small/InputNumber'
@@ -12,108 +11,28 @@ import { SubmitModal } from '@components/small/SubmitModal'
 
 import { apiService } from '@api/service'
 
-export interface ProductValuesProps {
-  isBuy: boolean
-  name: string
-  address: string
-  sex: string
-  nationality: string
-  personalId: string
-  personalIdDate: string
-  birthPlace: string
-  birthId: string
-  interestRateOrAmount: string
-  startDate: string
-  endDate: string
-  productId: string
-  productName: string
-  productBuy: string
-  productSell: string
-}
-
-const PRODUCT_INIT_VALUES: ProductValuesProps = {
-  isBuy: false,
-  name: '',
-  address: '',
-  sex: '',
-  nationality: '',
-  personalId: '',
-  personalIdDate: '',
-  birthPlace: '',
-  birthId: '',
-  interestRateOrAmount: '',
-  startDate: format(new Date(), 'dd/MM/yyyy'),
-  endDate: format(addWeeks(new Date(), 4), 'dd/MM/yyyy'),
-  productId: '',
-  productName: '',
-  productBuy: '',
-  productSell: ''
-}
-
-const customers = [
-  {
-    name: 'andrej',
-    address: 'add1',
-    sex: 'male',
-    nationality: 'SK',
-    personalId: '40444',
-    personalIdDate: '12/12/1212',
-    birthPlace: 'Brno',
-    birthId: '10001'
-  },
-  {
-    name: 'andrej222',
-    address: 'add1222',
-    sex: 'female',
-    nationality: 'DE',
-    personalId: '40444222',
-    personalIdDate: '12/12/1222',
-    birthPlace: 'Kosice',
-    birthId: '10001222'
-  }
-]
-
-const SEX_OPTIONS = [
-  { value: 'male', label: 'Muž' },
-  { value: 'female', label: 'Žena' }
-]
-const FORM_TYPE = [
-  { value: false, label: 'Zastavarna' },
-  { value: true, label: 'Bazar' }
-]
-const nationalityOptions = ['ČR', 'SK']
-
-export const PRODUCT_SCHEMA = (): any =>
-  object()
-    .shape({
-      name: string().required(),
-      address: string().required(),
-      nationality: string().required(),
-      personalId: string().required(),
-      personalIdDate: string()
-        .required()
-        .matches(/^\d{2}[/]\d{2}[/]\d{4}/),
-      birthPlace: string().required(),
-      birthId: string().required(),
-      interestRateOrAmount: string().required(),
-      productId: string().required().matches(/^\d+$/),
-      productName: string().required(),
-      productBuy: string()
-        .required()
-        .matches(/^\d+$|^\d+[.]\d{1,2}$/),
-      productSell: string()
-        .required()
-        .matches(/^\d+$|^\d+[.]\d{1,2}$/)
-    })
-    .required()
-
-const STYLE_ROW_FORM = 'flex items-center justify-between space-x-5 mx-5'
+import { CustomerProps, ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
+import {
+  SEX_OPTIONS,
+  NATIONALITY_OPTIONS,
+  FORM_TYPE,
+  PRODUCT_SCHEMA,
+  STYLE_ROW_FORM,
+  PRODUCT_INIT_VALUES
+} from '@components/forms/ProductForm/ProductForm.const'
 
 const ProductForm = () => {
   const [isBuy, setIsBuy] = useState<boolean | string>(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [customers, setCustomers] = useState<CustomerProps[]>([])
+  const [customerNames, setCustomerNames] = useState<any[]>([])
 
-  const customerNames = useMemo(() => customers.map((customer) => customer.name), customers) // todo useMemo() or useEffect()
+  useEffect(() => {
+    getCustomers().then((customers) => {
+      setCustomers(customers)
+      setCustomerNames(customers.map((customer: any) => customer.full_name))
+    })
+  }, [])
 
   const calculatePrice = (price?: string, interest?: string) => {
     const buyPrice = Number(price)
@@ -122,27 +41,30 @@ const ProductForm = () => {
     return Math.ceil(priceWithInterest / 5) * 5
   }
 
-  const handleSubmit = (values: ProductValuesProps) => {
+  const getCustomers = async (): Promise<CustomerProps[]> => {
+    return await apiService.get('customer/').json()
+  }
+
+  const handleModalSubmit = (values: ProductValuesProps) => {
     const jsonObject = {
-      is_buy: values.isBuy,
-      name: values.name,
-      address: values.address,
+      user: 1, // todo delete user
+      status: values.isBuy ? 'OFFER' : 'LOAN',
+      full_name: values.name,
+      residence: values.residence,
       sex: values.sex,
       nationality: values.nationality,
       personal_id: values.personalId,
-      personal_id_date: values.personalIdDate,
-      birth_place: values.birthPlace,
-      birth_id: values.birthId,
-      interest_rate_or_amount: Number(values.interestRateOrAmount),
-      start_date: values.startDate,
-      end_date: values.endDate,
-      product_id: Number(values.productId),
+      personal_id_expiration_date: values.personalIdDate,
+      birthplace: values.birthplace,
+      id_birth: values.birthId,
+      interest_rate_or_quantity: Number(values.interestRateOrQuantity),
+      inventory_id: Number(values.inventoryId),
       product_name: values.productName,
-      product_buy: Number(values.productBuy),
-      product_sell: Number(values.productSell)
+      buy_price: Number(values.buyPrice),
+      sell_price: Number(values.sellPrice)
     }
     try {
-      apiService.post(`todo`, { json: jsonObject })
+      apiService.post(`product/`, { json: jsonObject })
     } catch (error) {
       console.error(error)
       throw error
@@ -151,8 +73,8 @@ const ProductForm = () => {
   return (
     <>
       <div className="p-8 border rounded-xl border-gray-500 shadow-2xl">
-        <Formik initialValues={PRODUCT_INIT_VALUES} validationSchema={PRODUCT_SCHEMA} onSubmit={handleSubmit}>
-          {({ values, errors, handleSubmit, setFieldValue, touched, resetForm }) => {
+        <Formik initialValues={PRODUCT_INIT_VALUES} validationSchema={PRODUCT_SCHEMA} onSubmit={() => setIsOpen(true)}>
+          {({ values, errors, handleSubmit, setFieldValue, touched, resetForm, setTouched }) => {
             return (
               <form onSubmit={handleSubmit}>
                 <div className="divide-y divide-gray-400">
@@ -164,9 +86,9 @@ const ProductForm = () => {
                         onChange={(value) => {
                           setIsBuy(value)
                           setFieldValue('isBuy', value)
-                          setFieldValue('productBuy', '')
-                          setFieldValue('productSell', '')
-                          setFieldValue('interestRateOrAmount', '')
+                          setFieldValue('buyPrice', '')
+                          setFieldValue('sellPrice', '')
+                          setFieldValue('interestRateOrQuantity', '')
                         }}
                         value={values.isBuy}
                       />
@@ -177,30 +99,31 @@ const ProductForm = () => {
                         label="Meno"
                         onChange={(value) => {
                           setFieldValue('name', value)
-                          const customer = customers.find((customer) => customer.name === value)
+                          const customer = customers.find((customer: any) => customer.full_name === value)
                           if (customer) {
-                            setFieldValue('address', customer.address)
+                            setFieldValue('residence', customer.residence)
                             setFieldValue('sex', customer.sex)
                             setFieldValue('nationality', customer.nationality)
-                            setFieldValue('personalId', customer.personalId)
-                            setFieldValue('personalIdDate', customer.personalIdDate)
-                            setFieldValue('birthPlace', customer.birthPlace)
-                            setFieldValue('birthId', customer.birthId)
+                            setFieldValue('personalId', customer.personal_id)
+                            setFieldValue('personalIdDate', customer.personal_id_expiration_date)
+                            setFieldValue('birthId', customer.id_birth)
+                            setFieldValue('birthplace', customer.birthplace)
+                            setTouched({})
                           }
                         }}
                         value={values.name}
                         errored={!!(errors.name && touched.name)}
                       />
                       <Input
-                        name="address"
+                        name="residence"
                         label="Adresa"
-                        onChange={(value) => setFieldValue('address', value)}
-                        value={values.address}
-                        errored={!!(errors.address && touched.address)}
+                        onChange={(value) => setFieldValue('residence', value)}
+                        value={values.residence}
+                        errored={!!(errors.residence && touched.residence)}
                       />
                       <Combobox
                         label="Národnosť"
-                        options={nationalityOptions}
+                        options={NATIONALITY_OPTIONS}
                         onChange={(value) => setFieldValue('nationality', value)}
                         value={values.nationality}
                         errored={!!(errors.nationality && touched.nationality)}
@@ -237,11 +160,11 @@ const ProductForm = () => {
                         value={values.sex}
                       />
                       <Input
-                        name="birthPlace"
+                        name="birthplace"
                         label="Místo narození"
-                        onChange={(value) => setFieldValue('birthPlace', value)}
-                        value={values.birthPlace}
-                        errored={!!(errors.birthPlace && touched.birthPlace)}
+                        onChange={(value) => setFieldValue('birthplace', value)}
+                        value={values.birthplace}
+                        errored={!!(errors.birthplace && touched.birthplace)}
                       />
                     </div>
                   </div>
@@ -257,11 +180,11 @@ const ProductForm = () => {
                         errored={!!(errors.productName && touched.productName)}
                       />
                       <InputNumber
-                        name="productId"
+                        name="inventoryId"
                         label="Inventárí číslo"
-                        onChange={(value) => setFieldValue('productId', value)}
-                        value={values.productId}
-                        errored={!!(errors.productId && touched.productId)}
+                        onChange={(value) => setFieldValue('inventoryId', value)}
+                        value={values.inventoryId}
+                        errored={!!(errors.inventoryId && touched.inventoryId)}
                         isDecimal
                       />
                     </div>
@@ -269,41 +192,41 @@ const ProductForm = () => {
                       <div className="flex space-x-4">
                         <InputNumber
                           classNameInput="w-64"
-                          name="productBuy"
+                          name="buyPrice"
                           label={isBuy ? 'Nákup' : 'Pújička'}
-                          value={values.productBuy}
+                          value={values.buyPrice}
                           onChange={(value) => {
-                            setFieldValue('productBuy', value)
+                            setFieldValue('buyPrice', value)
                             if (!isBuy) {
-                              setFieldValue('productSell', calculatePrice(value, values.interestRateOrAmount))
+                              setFieldValue('sellPrice', calculatePrice(value, values.interestRateOrQuantity))
                             }
                           }}
-                          errored={!!(errors.productBuy && touched.productBuy)}
+                          errored={!!(errors.buyPrice && touched.buyPrice)}
                           isDecimal
                         />
                         <InputNumber
                           classNameInput="w-16"
-                          name="interestRateOrAmount"
+                          name="interestRateOrQuantity"
                           label={isBuy ? 'ks' : '%'}
                           onChange={(value) => {
-                            setFieldValue('interestRateOrAmount', value)
+                            setFieldValue('interestRateOrQuantity', value)
                             if (!isBuy) {
-                              setFieldValue('productSell', calculatePrice(values.productBuy, value))
+                              setFieldValue('sellPrice', calculatePrice(values.buyPrice, value))
                             }
                           }}
-                          value={values.interestRateOrAmount}
-                          errored={!!(errors.interestRateOrAmount && touched.interestRateOrAmount)}
+                          value={values.interestRateOrQuantity}
+                          errored={!!(errors.interestRateOrQuantity && touched.interestRateOrQuantity)}
                           isDecimal={!!isBuy}
                         />
                       </div>
                       <InputNumber
                         classNameInput="w-64"
-                        name="productSell"
+                        name="sellPrice"
                         label={isBuy ? 'Prodej' : 'K vyplacení'}
-                        value={values.productSell}
-                        onChange={(value) => setFieldValue('productSell', value)}
+                        value={values.sellPrice}
+                        onChange={(value) => setFieldValue('sellPrice', value)}
                         disabled={!isBuy}
-                        errored={!!(errors.productSell && touched.productSell)}
+                        errored={!!(errors.sellPrice && touched.sellPrice)}
                       />
                     </div>
                   </div>
@@ -313,10 +236,16 @@ const ProductForm = () => {
                         classNameInput="w-32"
                         name="startDate"
                         label="Uzavírají dne"
-                        value={values.startDate}
+                        value={format(new Date(), 'dd/MM/yyyy')}
                         disabled
                       />
-                      <Input classNameInput="w-32" name="endDate" label="Splatná dne" value={values.endDate} disabled />
+                      <Input
+                        classNameInput="w-32"
+                        name="endDate"
+                        label="Splatná dne"
+                        value={format(addWeeks(new Date(), 4), 'dd/MM/yyyy')}
+                        disabled
+                      />
                     </div>
                     <div className="mt-6 space-x-5">
                       <Button
@@ -331,20 +260,20 @@ const ProductForm = () => {
                     </div>
                   </div>
                 </div>
+                <SubmitModal
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  handleSubmit={() => {
+                    handleModalSubmit(values)
+                  }}
+                  title="Potvrdiť"
+                  subtitle="Naozaj chcete pridať záznam?"
+                />
               </form>
             )
           }}
         </Formik>
       </div>
-      <SubmitModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        handleSubmit={() => {
-          console.log('press submit')
-        }}
-        title="Potvrdiť"
-        subtitle="Naozaj chcete pridať záznam?"
-      />
     </>
   )
 }
