@@ -42,7 +42,12 @@ const ProductForm = () => {
   }
 
   const getCustomers = async (): Promise<CustomerProps[]> => {
-    return await apiService.get('customer/').json()
+    try {
+      return await apiService.get('customer/').json()
+    } catch (error) {
+      console.error(error)
+      return []
+    }
   }
 
   const handleModalSubmit = (values: ProductValuesProps) => {
@@ -64,7 +69,7 @@ const ProductForm = () => {
       sell_price: Number(values.sellPrice)
     }
     try {
-      apiService.post(`product/`, { json: jsonObject })
+      apiService.post('product/', { json: jsonObject })
     } catch (error) {
       console.error(error)
       throw error
