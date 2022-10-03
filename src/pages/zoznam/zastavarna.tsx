@@ -14,7 +14,6 @@ const Zastavarna: NextPage = () => {
       <main>
         <MainLayout>
           <Navbar />
-          <div>Zastavarna</div>
         </MainLayout>
       </main>
     </div>

@@ -20,10 +20,14 @@ import {
   STYLE_ROW_FORM,
   PRODUCT_INIT_VALUES
 } from '@components/forms/ProductForm/ProductForm.const'
+import { InformationModal } from '@components/small/InformationModal'
 
 const ProductForm = () => {
   const [isBuy, setIsBuy] = useState<boolean | string>(false)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false)
+  const [isOpenInformationSuccessModal, setIsOpenInformationSuccessModal] = useState(false)
+  const [isOpenInformationErrorModal, setIsOpenInformationErrorModal] = useState(false)
+  const [policyNumber, setPolicyNumber] = useState('')
   const [customers, setCustomers] = useState<CustomerProps[]>([])
   const [customerNames, setCustomerNames] = useState<any[]>([])
 
@@ -50,7 +54,7 @@ const ProductForm = () => {
     }
   }
 
-  const handleModalSubmit = (values: ProductValuesProps) => {
+  const handleModalSubmit = async (values: ProductValuesProps) => {
     const jsonObject = {
       user: 1, // todo delete user
       status: values.isBuy ? 'OFFER' : 'LOAN',
@@ -69,16 +73,24 @@ const ProductForm = () => {
       sell_price: Number(values.sellPrice)
     }
     try {
-      apiService.post('product/', { json: jsonObject })
+      await apiService
+        .post('product/', { json: jsonObject })
+        .json()
+        .then((res: any) => setPolicyNumber(res.id))
+      setIsOpenInformationSuccessModal(true)
     } catch (error) {
       console.error(error)
-      throw error
+      setIsOpenInformationErrorModal(true)
     }
   }
   return (
     <>
       <div className="p-8 border rounded-xl border-gray-500 shadow-2xl">
-        <Formik initialValues={PRODUCT_INIT_VALUES} validationSchema={PRODUCT_SCHEMA} onSubmit={() => setIsOpen(true)}>
+        <Formik
+          initialValues={PRODUCT_INIT_VALUES}
+          validationSchema={PRODUCT_SCHEMA}
+          onSubmit={() => setIsOpenSubmitModal(true)}
+        >
           {({ values, errors, handleSubmit, setFieldValue, touched, resetForm, setTouched }) => {
             return (
               <form onSubmit={handleSubmit}>
@@ -155,6 +167,7 @@ const ProductForm = () => {
                         onChange={(value) => setFieldValue('personalIdDate', value)}
                         value={values.personalIdDate}
                         errored={!!(errors.personalIdDate && touched.personalIdDate)}
+                        placeholder="yyyy-mm-dd"
                       />
                     </div>
                     <div className="flex items-center justify-center space-x-16">
@@ -266,13 +279,27 @@ const ProductForm = () => {
                   </div>
                 </div>
                 <SubmitModal
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
+                  isOpen={isOpenSubmitModal}
+                  setIsOpen={setIsOpenSubmitModal}
                   handleSubmit={() => {
                     handleModalSubmit(values)
                   }}
                   title="Potvrdiť"
                   subtitle="Naozaj chcete pridať záznam?"
+                />
+                <InformationModal
+                  isOpen={isOpenInformationSuccessModal}
+                  setIsOpen={setIsOpenInformationSuccessModal}
+                  isSuccess
+                  title="Úspešne vytvořené"
+                  subtitle={`Zmluvní číslo: ${policyNumber}`}
+                />
+                <InformationModal
+                  isOpen={isOpenInformationErrorModal}
+                  setIsOpen={setIsOpenInformationErrorModal}
+                  isError
+                  title="Chyba!"
+                  subtitle="Produkt sa nepodarilo uložiť!"
                 />
               </form>
             )

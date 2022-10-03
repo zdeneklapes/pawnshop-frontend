@@ -13,7 +13,6 @@ const Bazar: NextPage = () => {
 
       <MainLayout>
         <Navbar />
-        <div>Bazar</div>
       </MainLayout>
     </div>
   )

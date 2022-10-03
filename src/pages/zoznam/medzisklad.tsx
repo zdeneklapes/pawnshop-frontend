@@ -12,7 +12,6 @@ const Medzisklad: NextPage = () => {
 
       <MainLayout>
         <Navbar />
-        <div>Medzisklad</div>
       </MainLayout>
     </div>
   )

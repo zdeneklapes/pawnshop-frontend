@@ -35,8 +35,9 @@ export const PRODUCT_SCHEMA = (): any =>
       residence: string().required(),
       nationality: string().required(),
       personalId: string().required(),
-      personalIdDate: string().required(),
-      // .matches(/^\d{2}[/]\d{2}[/]\d{4}/),
+      personalIdDate: string()
+        .required()
+        .matches(/^\d{4}[-]\d{2}[-]\d{2}/),
       birthplace: string().required(),
       birthId: string().required(),
       interestRateOrQuantity: string().required(),

@@ -27,7 +27,7 @@ const Button: FC<ButtonProps> = ({
       type={type}
       className={clsx(
         className,
-        'border border-gray-400 rounded p-2  hover:bg-gray-50 hover:font-medium placeholder-green-700 focus:bg-gray-50 outline-black',
+        'border border-gray-400 rounded p-2  hover:bg-gray-50 hover:font-medium placeholder-green-700 focus:bg-gray-50 outline-none focus:bg-transparent',
         { 'hover:border-gray-400': disabled },
         { 'hover:text-green-800 hover:border-green-800': submit },
         { 'hover:text-red-800 hover:border-red-800': cancel },

@@ -38,7 +38,7 @@ const Input: FC<InputProps> = ({
       <input
         className={clsx(
           classNameInput,
-          'border border-gray-400 rounded p-2 group-hover:border-black group-hover:bg-gray-50 placeholder-green-700 focus:bg-gray-50 outline-black',
+          'border border-gray-400 rounded p-2 group-hover:border-black group-hover:bg-gray-50 placeholder-gray-300 focus:bg-gray-50 outline-black',
           { 'group-hover:border-gray-400': disabled },
           { 'border-red-700 border-2': errored }
         )}

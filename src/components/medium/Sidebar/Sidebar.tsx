@@ -11,12 +11,12 @@ const SidebarProps = () => {
   const router = useRouter()
   return (
     <div className="flex mt-2 w-64 border-gray-300 border-r">
-      <nav className="mx-2 divide-y divide-gray-400 w-full mt-16">
+      <nav className="mx-2 divide-y divide-gray-400 w-full ">
         {navigationRoutes.map((page) => (
           <Link key={page.route} href={page.route}>
             <span
-              className={clsx('flex flex-col w-full py-4 text-2xl  items-center font-semibold hover:cursor-pointer', {
-                'text-emerald-800': router.pathname === page.route
+              className={clsx('flex flex-col w-full py-4 text-2xl  items-center hover:cursor-pointer', {
+                'font-bold ': router.pathname === page.route
               })}
             >
               {page.name}

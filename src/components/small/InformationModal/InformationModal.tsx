@@ -1,16 +1,25 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, Dispatch, SetStateAction, FC } from 'react'
 import { Button } from '@components/small/Button'
+import clsx from 'clsx'
 
-interface SubmitModalProps {
+interface InformationModalProps {
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
   title?: string
   subtitle?: string
-  handleSubmit: () => void
+  isError?: boolean
+  isSuccess?: boolean
 }
 
-const SubmitModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', subtitle = '', handleSubmit }) => {
+const InformationModal: FC<InformationModalProps> = ({
+  isOpen,
+  setIsOpen,
+  title = '',
+  subtitle = '',
+  isError = false,
+  isSuccess = false
+}) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative  z-10" onClose={() => setIsOpen(false)}>
@@ -37,23 +46,26 @@ const SubmitModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', subt
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md min-w-[400px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel
+                className={clsx(
+                  '"w-full max-w-md min-w-[405px] transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow  transition-all text-red-700',
+                  { 'border border-red-400 bg-red-100': isError },
+                  { 'border border-green-400 bg-green-100': isSuccess }
+                )}
+              >
                 <Dialog.Title as="h3" className="text-2xl font-medium leading-10 text-gray-900 text-center">
                   {title}
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-gray-500 text-center text-lg">{subtitle}</p>
+                  <p className="text-black text-center text-lg">{subtitle}</p>
                 </div>
-                <div className="flex mt-4 space-x-6 justify-center">
-                  <Button text="Zrušiť" onClick={() => setIsOpen(false)} className="w-32" cancel />
+                <div className=" flex mt-4 space-x-6 justify-center text-black">
                   <Button
-                    text="Potvrdiť"
-                    onClick={() => {
-                      setIsOpen(false)
-                      handleSubmit()
-                    }}
+                    text="Zatvoriť"
+                    onClick={() => setIsOpen(false)}
                     className="w-32"
-                    submit
+                    submit={isSuccess}
+                    cancel={isError}
                   />
                 </div>
               </Dialog.Panel>
@@ -65,4 +77,4 @@ const SubmitModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', subt
   )
 }
 
-export default SubmitModal
+export default InformationModal
