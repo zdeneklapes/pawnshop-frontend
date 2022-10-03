@@ -14,10 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "typeRoots": [
-      "node_modules/@types",
-      "src/typings"
-    ],
+    "typeRoots": ["node_modules/@types", "src/typings"],
     "paths": {
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
