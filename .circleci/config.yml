@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  heroku: circleci/heroku@1.2.6 # Use the Heroku orb in your config
+  node: circleci/node@5.0.2
 
 executors:
   my-executor:
@@ -13,6 +13,8 @@ jobs:
     machine: true
     steps:
       - checkout
+      - node/install-packages:
+          override-ci-command: npm install
       - run:
           name:
           command: |
@@ -52,11 +54,15 @@ workflows:
     jobs:
       - lint
       - deploy-dev:
+          requires:
+            - lint
           filters:
             branches:
               only:
                 - dev
       - deploy-main:
+          requires:
+            - lint
           filters:
             branches:
               only:

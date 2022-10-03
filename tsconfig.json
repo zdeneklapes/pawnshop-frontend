@@ -17,6 +17,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
+      "@api/*": ["src/pages/api/*"],
       "@styles/*": ["src/styles/*"]
     }
   },
