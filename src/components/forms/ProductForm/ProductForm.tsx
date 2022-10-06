@@ -9,7 +9,7 @@ import { Radio } from '@components/small/Radio'
 import { Button } from '@components/small/Button'
 import { SubmitModal } from '@components/small/SubmitModal'
 
-import { apiService } from '@api/service'
+import { apiService } from '@api/service/service'
 
 import { ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
 import { CustomerFetchingProps } from '@components/globals/globals.types'
