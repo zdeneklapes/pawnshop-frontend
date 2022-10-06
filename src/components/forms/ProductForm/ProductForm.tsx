@@ -11,7 +11,8 @@ import { SubmitModal } from '@components/small/SubmitModal'
 
 import { apiService } from '@api/service'
 
-import { CustomerProps, ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
+import { ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
+import { CustomerFetchingProps } from '@components/globals/globals.types'
 import {
   SEX_OPTIONS,
   NATIONALITY_OPTIONS,
@@ -21,6 +22,7 @@ import {
   PRODUCT_INIT_VALUES
 } from '@components/forms/ProductForm/ProductForm.const'
 import { InformationModal } from '@components/small/InformationModal'
+import { dateFormatFromDatabase, dateFormatIntoDatabase } from '@components/globals/utils'
 
 const ProductForm = () => {
   const [isBuy, setIsBuy] = useState<boolean | string>(false)
@@ -28,13 +30,13 @@ const ProductForm = () => {
   const [isOpenInformationSuccessModal, setIsOpenInformationSuccessModal] = useState(false)
   const [isOpenInformationErrorModal, setIsOpenInformationErrorModal] = useState(false)
   const [policyNumber, setPolicyNumber] = useState('')
-  const [customers, setCustomers] = useState<CustomerProps[]>([])
-  const [customerNames, setCustomerNames] = useState<any[]>([])
+  const [customers, setCustomers] = useState<CustomerFetchingProps[]>([])
+  const [customerNames, setCustomerNames] = useState<string[]>([])
 
   useEffect(() => {
     getCustomers().then((customers) => {
       setCustomers(customers)
-      setCustomerNames(customers.map((customer: any) => customer.full_name))
+      setCustomerNames(customers.map((customer: CustomerFetchingProps) => customer.full_name))
     })
   }, [])
 
@@ -45,7 +47,7 @@ const ProductForm = () => {
     return Math.ceil(priceWithInterest / 5) * 5
   }
 
-  const getCustomers = async (): Promise<CustomerProps[]> => {
+  const getCustomers = async (): Promise<CustomerFetchingProps[]> => {
     try {
       return await apiService.get('customer/').json()
     } catch (error) {
@@ -56,16 +58,18 @@ const ProductForm = () => {
 
   const handleModalSubmit = async (values: ProductValuesProps) => {
     const jsonObject = {
+      customer: {
+        full_name: values.name,
+        residence: values.residence,
+        sex: values.sex,
+        nationality: values.nationality,
+        personal_id: values.personalId,
+        personal_id_expiration_date: dateFormatIntoDatabase(values.personalIdDate),
+        birthplace: values.birthplace,
+        id_birth: values.birthId
+      },
       user: 1, // todo delete user
       status: values.isBuy ? 'OFFER' : 'LOAN',
-      full_name: values.name,
-      residence: values.residence,
-      sex: values.sex,
-      nationality: values.nationality,
-      personal_id: values.personalId,
-      personal_id_expiration_date: values.personalIdDate,
-      birthplace: values.birthplace,
-      id_birth: values.birthId,
       interest_rate_or_quantity: Number(values.interestRateOrQuantity),
       inventory_id: Number(values.inventoryId),
       product_name: values.productName,
@@ -122,7 +126,10 @@ const ProductForm = () => {
                             setFieldValue('sex', customer.sex)
                             setFieldValue('nationality', customer.nationality)
                             setFieldValue('personalId', customer.personal_id)
-                            setFieldValue('personalIdDate', customer.personal_id_expiration_date)
+                            setFieldValue(
+                              'personalIdDate',
+                              dateFormatFromDatabase(customer.personal_id_expiration_date)
+                            )
                             setFieldValue('birthId', customer.id_birth)
                             setFieldValue('birthplace', customer.birthplace)
                             setTouched({})
@@ -167,7 +174,7 @@ const ProductForm = () => {
                         onChange={(value) => setFieldValue('personalIdDate', value)}
                         value={values.personalIdDate}
                         errored={!!(errors.personalIdDate && touched.personalIdDate)}
-                        placeholder="yyyy-mm-dd"
+                        placeholder="dd/mm/yyyy"
                       />
                     </div>
                     <div className="flex items-center justify-center space-x-16">

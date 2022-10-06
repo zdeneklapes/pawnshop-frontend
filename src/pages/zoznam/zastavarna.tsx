@@ -2,8 +2,30 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { MainLayout } from '@components/big/MainLayout'
 import { Navbar } from '@components/medium/Navbar'
+import { useEffect, useState } from 'react'
+import { apiService } from '@api/service'
+import { ProductTableFetchingProps } from '@components/medium/ProductTable/ProductTable.types'
+
+import { ProductTable } from '@components/medium/ProductTable'
+
+const fetchLoanProducts = async (): Promise<ProductTableFetchingProps[]> => {
+  try {
+    return await apiService.get('product/?status=LOAN').json()
+  } catch (error) {
+    console.error(error)
+    return []
+  }
+}
 
 const Zastavarna: NextPage = () => {
+  const [loanProduct, setLoanProduct] = useState<ProductTableFetchingProps[]>([])
+
+  useEffect(() => {
+    fetchLoanProducts().then((customers) => {
+      setLoanProduct(customers)
+    })
+  }, [])
+
   return (
     <div>
       <Head>
@@ -14,6 +36,7 @@ const Zastavarna: NextPage = () => {
       <main>
         <MainLayout>
           <Navbar />
+          <ProductTable products={loanProduct} />
         </MainLayout>
       </main>
     </div>

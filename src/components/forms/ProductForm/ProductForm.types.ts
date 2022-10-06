@@ -14,14 +14,3 @@ export interface ProductValuesProps {
   buyPrice: string
   sellPrice: string
 }
-
-export interface CustomerProps {
-  full_name: string
-  residence: string
-  sex: string
-  nationality: string
-  personal_id: string
-  personal_id_expiration_date: string
-  birthplace: string
-  id_birth: string
-}
