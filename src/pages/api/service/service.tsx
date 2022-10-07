@@ -17,3 +17,11 @@ export const fetchProducts = async (product: string): Promise<ProductTableFetchi
     return []
   }
 }
+
+export const fetchProduct = async (productId: number): Promise<ProductTableFetchingProps | undefined> => {
+  try {
+    return await apiService.get(`product/${productId}/`).json()
+  } catch (error) {
+    console.error(error)
+  }
+}

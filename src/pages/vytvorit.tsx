@@ -1,18 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { MainLayout } from '@components/big/MainLayout'
-import { ProductForm } from '@components/forms/ProductForm'
+import { ProductCreationForm } from '@components/forms/ProductCreationForm'
 const Vytvorit: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Pridať</title>
+        <title>Vytvořiť</title>
       </Head>
 
       <main>
         <MainLayout>
           <div className="flex items-center justify-center h-full w-full">
-            <ProductForm />
+            <ProductCreationForm />
           </div>
         </MainLayout>
       </main>

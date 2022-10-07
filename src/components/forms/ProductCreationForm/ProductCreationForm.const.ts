@@ -1,5 +1,5 @@
 import { object, string } from 'yup'
-import { ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
+import { ProductValuesProps } from '@components/forms/ProductCreationForm/ProductCreationForm.types'
 
 export const SEX_OPTIONS = [
   { value: 'M', label: 'Muž' },

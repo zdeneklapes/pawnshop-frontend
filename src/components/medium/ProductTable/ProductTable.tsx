@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react'
 import { dateFormatFromDatabase } from '@components/globals/utils'
 import { ProductTableProps } from '@components/medium/ProductTable/ProductTable.types'
 import { Input } from '@components/small/Input'
+import Router from 'next/router'
 
 const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
   const [pro, setPro] = useState(products)
@@ -59,6 +60,7 @@ const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
         {pro.map((product) => (
           <div
             key={product.id}
+            onClick={() => Router.push(`/produkt/${product.id}/`)}
             className="flex flex-row space-x-1 items-center w-full p-3 hover:border-black hover:bg-gray-50  hover:cursor-pointer"
           >
             <div className="w-[7%] truncate"> {product.id}</div>

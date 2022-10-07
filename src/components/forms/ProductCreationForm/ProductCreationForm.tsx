@@ -11,7 +11,7 @@ import { SubmitModal } from '@components/small/SubmitModal'
 
 import { apiService } from '@api/service/service'
 
-import { ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
+import { ProductValuesProps } from '@components/forms/ProductCreationForm/ProductCreationForm.types'
 import { CustomerFetchingProps } from '@components/globals/globals.types'
 import {
   SEX_OPTIONS,
@@ -20,11 +20,11 @@ import {
   PRODUCT_SCHEMA,
   STYLE_ROW_FORM,
   PRODUCT_INIT_VALUES
-} from '@components/forms/ProductForm/ProductForm.const'
+} from '@components/forms/ProductCreationForm/ProductCreationForm.const'
 import { InformationModal } from '@components/small/InformationModal'
 import { dateFormatFromDatabase, dateFormatIntoDatabase } from '@components/globals/utils'
 
-const ProductForm = () => {
+const ProductCreationForm = () => {
   const [isBuy, setIsBuy] = useState<boolean | string>(false)
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false)
   const [isOpenInformationSuccessModal, setIsOpenInformationSuccessModal] = useState(false)
@@ -317,4 +317,4 @@ const ProductForm = () => {
   )
 }
 
-export default ProductForm
+export default ProductCreationForm
