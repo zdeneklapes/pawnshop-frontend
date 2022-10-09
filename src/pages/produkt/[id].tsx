@@ -5,7 +5,6 @@ import { fetchProduct } from '@api/service/service'
 import { ProductTableFetchingProps } from '@components/medium/ProductTable/ProductTable.types'
 import { ProductEditForm } from '@components/forms/ProductEditForm'
 import { MainLayout } from '@components/big/MainLayout'
-import { ProductCreationForm } from '@components/forms/ProductCreationForm'
 
 const Product = () => {
   const router = useRouter()

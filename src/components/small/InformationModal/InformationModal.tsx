@@ -48,7 +48,7 @@ const InformationModal: FC<InformationModalProps> = ({
             >
               <Dialog.Panel
                 className={clsx(
-                  '"w-full max-w-md min-w-[405px] transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow  transition-all text-red-700',
+                  'w-full max-w-md min-w-[405px] transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow  transition-all text-red-700',
                   { 'border border-red-400 bg-red-100': isError },
                   { 'border border-green-400 bg-green-100': isSuccess }
                 )}

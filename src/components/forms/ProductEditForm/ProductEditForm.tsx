@@ -57,6 +57,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
 
   const handleModalSubmit = async (values: ProductEditProps) => {
     const jsonObject = {
+      update: 'UPDATE_DATA',
       user: 1, // todo delete user
       inventory_id: Number(values.inventoryId),
       product_name: values.productName,
@@ -65,7 +66,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
       date_extend: dateFormatIntoDatabase(values.dateExtend)
     }
     try {
-      await apiService.patch(`product/${product.id}/?operation=UPDATE`, { json: jsonObject }).json()
+      await apiService.patch(`product/${product.id}/`, { json: jsonObject }).json()
       setIsOpenInformationSuccessModal(true)
     } catch (error) {
       console.error(error)
