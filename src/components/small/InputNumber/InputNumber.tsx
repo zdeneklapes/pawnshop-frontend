@@ -8,8 +8,8 @@ interface InputNumberProps {
   value?: string
   id?: string
   label?: string
-  name: string
-  onChange: (value: string | undefined) => void
+  name?: string
+  onChange?: (value: string | undefined) => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
   classNameInput?: string
@@ -24,7 +24,7 @@ const InputNumber: FC<InputNumberProps> = ({
   id,
   label,
   onBlur,
-  name,
+  name = '',
   onChange,
   onClick,
   type = 'text',
@@ -44,14 +44,15 @@ const InputNumber: FC<InputNumberProps> = ({
       <input
         className={clsx(
           classNameInput,
-          'border border-gray-400 rounded p-2 group-hover:border-black group-hover:bg-gray-50 placeholder-green-700 focus:bg-gray-50 outline-black',
-          { 'group-hover:border-gray-400': disabled },
-          { 'border-red-700 border-2': errored }
+          'border border-gray-400 rounded p-2 group-hover:border-black group-hover:bg-gray-50 placeholder-gray-300 focus:bg-gray-50 outline-black',
+          { 'group-hover:border-gray-400 bg-gray-100 group-hover:bg-gray-100': disabled },
+          { 'border-red-700 border-2': errored },
+          { 'bg-white': !errored && !disabled }
         )}
         id={id}
         name={name}
         onBlur={onBlur}
-        onChange={(e) => onChange(e.target.value.match(getRegex()) ? e.target.value : value)}
+        onChange={(e) => (onChange ? onChange(e.target.value.match(getRegex()) ? e.target.value : value) : null)}
         onClick={onClick}
         placeholder={placeholder}
         type={type}

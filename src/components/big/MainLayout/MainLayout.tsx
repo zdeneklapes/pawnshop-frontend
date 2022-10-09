@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react'
 
-// import { Navbar } from '@components/medium/Navbar'
 import { Sidebar } from '@components/medium/Sidebar'
 
 interface MainLayoutProps {
@@ -11,10 +10,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-row h-screen">
       <Sidebar />
-      <div className="flex h-full flex-col w-full">
-        {/*<Navbar />*/}
-        {children}
-      </div>
+      <div className="flex flex-col w-full">{children}</div>
     </div>
   )
 }

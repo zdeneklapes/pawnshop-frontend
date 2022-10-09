@@ -1,5 +1,5 @@
 import { object, string } from 'yup'
-import { ProductValuesProps } from '@components/forms/ProductForm/ProductForm.types'
+import { ProductValuesProps } from '@components/forms/ProductCreationForm/ProductCreationForm.types'
 
 export const SEX_OPTIONS = [
   { value: 'M', label: 'Muž' },
@@ -37,7 +37,7 @@ export const PRODUCT_SCHEMA = (): any =>
       personalId: string().required(),
       personalIdDate: string()
         .required()
-        .matches(/^\d{4}[-]\d{2}[-]\d{2}/),
+        .matches(/^\d{2}[/]\d{2}[/]\d{4}/),
       birthplace: string().required(),
       birthId: string().required(),
       interestRateOrQuantity: string().required(),

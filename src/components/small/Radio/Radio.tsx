@@ -15,7 +15,7 @@ const Radio: FC<RadioProps> = ({ options, onChange, label = '', className = '', 
     onChange(options[0].value)
   }, [])
   return (
-    <div className={clsx('group')}>
+    <div className="group">
       <div className="text-md pl-1 group-hover:text-black font-semibold text-gray-800">{label}</div>
       <RadioGroup
         value={options.some((el) => el.value === value) ? value : options[0].value}

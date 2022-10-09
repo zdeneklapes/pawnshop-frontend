@@ -8,7 +8,7 @@ interface InputProps {
   value?: string
   id?: string
   label?: string
-  name: string
+  name?: string
   onChange?: (value: string | undefined) => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
@@ -23,7 +23,7 @@ const Input: FC<InputProps> = ({
   id,
   label,
   onBlur,
-  name,
+  name = '',
   onChange,
   onClick,
   type = 'text',
@@ -39,8 +39,9 @@ const Input: FC<InputProps> = ({
         className={clsx(
           classNameInput,
           'border border-gray-400 rounded p-2 group-hover:border-black group-hover:bg-gray-50 placeholder-gray-300 focus:bg-gray-50 outline-black',
-          { 'group-hover:border-gray-400': disabled },
-          { 'border-red-700 border-2': errored }
+          { 'group-hover:border-gray-400 bg-gray-100 group-hover:bg-gray-100': disabled },
+          { 'border-red-700 border-2': errored },
+          { 'bg-white': !errored && !disabled }
         )}
         id={id}
         name={name}

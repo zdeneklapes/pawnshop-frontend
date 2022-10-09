@@ -9,9 +9,18 @@ interface ComboboxProps {
   className?: string
   value: string
   errored?: boolean
+  disabled?: boolean
 }
 
-const CustomCombobox: FC<ComboboxProps> = ({ options, onChange, label, className = '', value, errored = false }) => {
+const CustomCombobox: FC<ComboboxProps> = ({
+  options,
+  onChange,
+  label,
+  className = '',
+  value,
+  errored = false,
+  disabled = false
+}) => {
   const [query, setQuery] = useState('')
 
   const filteredOptions =
@@ -31,7 +40,9 @@ const CustomCombobox: FC<ComboboxProps> = ({ options, onChange, label, className
               className={clsx(
                 className,
                 'border border-gray-400 rounded p-2 group-hover:border-black group-hover:bg-gray-50 focus:bg-gray-50 outline-black',
-                { 'border-red-700 border-2': errored }
+                { 'group-hover:border-gray-400 bg-gray-100 group-hover:bg-gray-100': disabled },
+                { 'border-red-700 border-2': errored },
+                { 'bg-white': !errored && !disabled }
               )}
               onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
               displayValue={(option: string) => option}
