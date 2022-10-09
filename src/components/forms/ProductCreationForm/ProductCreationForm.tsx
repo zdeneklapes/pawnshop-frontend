@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { format, addWeeks } from 'date-fns'
-import { Formik } from 'formik'
+import { Formik, FormikState } from 'formik'
 
 import { Input } from '@components/small/Input'
 import { InputNumber } from '@components/small/InputNumber'
@@ -56,7 +56,10 @@ const ProductCreationForm = () => {
     }
   }
 
-  const handleModalSubmit = async (values: ProductValuesProps) => {
+  const handleModalSubmit = async (
+    values: ProductValuesProps,
+    resetForm: (nextState?: Partial<FormikState<ProductValuesProps>> | undefined) => void
+  ) => {
     const jsonObject = {
       customer: {
         full_name: values.name,
@@ -82,6 +85,7 @@ const ProductCreationForm = () => {
         .json()
         .then((res: any) => setPolicyNumber(res.id))
       setIsOpenInformationSuccessModal(true)
+      resetForm()
     } catch (error) {
       console.error(error)
       setIsOpenInformationErrorModal(true)
@@ -289,7 +293,7 @@ const ProductCreationForm = () => {
                   isOpen={isOpenSubmitModal}
                   setIsOpen={setIsOpenSubmitModal}
                   handleSubmit={() => {
-                    handleModalSubmit(values)
+                    handleModalSubmit(values, resetForm)
                   }}
                   title="Potvrdiť"
                   subtitle="Naozaj chcete pridať záznam?"
