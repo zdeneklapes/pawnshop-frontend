@@ -1,6 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, Dispatch, SetStateAction, FC, ReactNode } from 'react'
-import { Button } from '@components/small/Button'
 import clsx from 'clsx'
 
 interface InformationModalProps {
