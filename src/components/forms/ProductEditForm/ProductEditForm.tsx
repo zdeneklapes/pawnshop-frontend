@@ -14,6 +14,7 @@ import { STYLE_ROW_FORM } from '@components/forms/ProductCreationForm/ProductCre
 import { InformationModal } from '@components/small/InformationModal'
 import { dateFormatFromDatabase, dateFormatIntoDatabase } from '@components/globals/utils'
 import { object, string } from 'yup'
+import { Modal } from '@components/small/Modal'
 
 const PRODUCT_SCHEMA = (): any =>
   object()
@@ -45,6 +46,9 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false)
   const [isOpenInformationSuccessModal, setIsOpenInformationSuccessModal] = useState(false)
   const [isOpenInformationErrorModal, setIsOpenInformationErrorModal] = useState(false)
+  const [isOpenQuantityModal, setIsOpenQuantityModal] = useState(false)
+  const [isBuy, setIsBuy] = useState(false)
+  const [quantity, setQuantity] = useState('')
 
   const PRODUCT_INIT_VALUES = {
     user: '1',
@@ -55,7 +59,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
     dateExtend: dateFormatFromDatabase(product.date_extend)
   }
 
-  const handleModalSubmit = async (values: ProductEditProps) => {
+  const handleEditSubmit = async (values: ProductEditProps) => {
     const jsonObject = {
       update: 'UPDATE_DATA',
       user: 1, // todo delete user
@@ -72,6 +76,27 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
       console.error(error)
       setIsOpenInformationErrorModal(true)
     }
+  }
+
+  const handleQuantitySubmit = async () => {
+    try {
+      await apiService
+        .patch(`product/${product.id}/`, {
+          json: { update: isBuy ? 'OFFER_BUY' : 'OFFER_SELL', quantity: Number(quantity) }
+        })
+        .json()
+      setIsOpenInformationSuccessModal(true)
+    } catch (error) {
+      console.error(error)
+      setIsOpenInformationErrorModal(true)
+    }
+  }
+  if (product.status === 'INACTIVE_OFFER' || product.status === 'INACTIVE_LOAN') {
+    return (
+      <div className="text-xl">
+        Produkt {product.status === 'INACTIVE_OFFER' ? 'z bazaru' : 'zo zastavárny'} je neaktivní.
+      </div>
+    )
   }
   return (
     <>
@@ -163,7 +188,6 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                       <div className="rounded py-3 border-gray-300 border shadow-sm space-y-2">
                         {[1, 2, 3, 4].map((num, index) => (
                           <div key={index}>
-                            {/*<p>{num}. tyzden</p>*/}
                             <div className={STYLE_ROW_FORM}>
                               <div className="flex space-x-4">
                                 <Input
@@ -199,9 +223,30 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                         disabled
                       />
                     </div>
+
                     <div className={STYLE_ROW_FORM}>
-                      <Button className="w-48" text="Nákup" />
-                      <Button className="w-48" text="Prodej" />
+                      {product.status === 'OFFER' ? (
+                        <>
+                          <Button
+                            className="w-48"
+                            text="Nákup"
+                            onClick={() => {
+                              setIsBuy(true)
+                              setQuantity('')
+                              setIsOpenQuantityModal(true)
+                            }}
+                          />
+                          <Button
+                            className="w-48"
+                            text="Prodej"
+                            onClick={() => {
+                              setIsBuy(false)
+                              setQuantity('')
+                              setIsOpenQuantityModal(true)
+                            }}
+                          />
+                        </>
+                      ) : null}
                       <Button className="w-48" type="submit" text="Potvrdiť" submit />
                     </div>
                   </div>
@@ -210,7 +255,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                   isOpen={isOpenSubmitModal}
                   setIsOpen={setIsOpenSubmitModal}
                   handleSubmit={() => {
-                    handleModalSubmit(values)
+                    handleEditSubmit(values)
                   }}
                   title="Potvrdiť"
                   subtitle="Naozaj chcete upraviť záznam?"
@@ -228,6 +273,29 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                   title="Chyba!"
                   subtitle="Produkt sa nepodarilo upraviť!"
                 />
+                <Modal
+                  isOpen={isOpenQuantityModal}
+                  setIsOpen={setIsOpenQuantityModal}
+                  title={isBuy ? 'Koupit' : 'Předat' + ' počet kusú'}
+                >
+                  <div className="flex flex-col space-y-6 mt-2">
+                    <InputNumber value={quantity} onChange={(value) => value && setQuantity(value)} isDecimal />
+                    <div className="space-x-6">
+                      <Button text="Zrušiť" onClick={() => setIsOpenQuantityModal(false)} className="w-32" cancel />
+                      <Button
+                        text="Potvrdiť"
+                        onClick={() => {
+                          setIsOpenQuantityModal(false)
+                          if (quantity) {
+                            handleQuantitySubmit()
+                          }
+                        }}
+                        className="w-32"
+                        submit
+                      />
+                    </div>
+                  </div>
+                </Modal>
               </form>
             )
           }}

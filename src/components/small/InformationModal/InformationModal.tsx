@@ -20,7 +20,7 @@ const InformationModal: FC<InformationModalProps> = ({
   isSuccess = false
 }) => {
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={title}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={title} isError={isError} isSuccess={isSuccess}>
       <div className="mt-2">
         <p className="text-black text-center text-lg">{subtitle}</p>
       </div>

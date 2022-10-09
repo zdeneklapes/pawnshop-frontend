@@ -8,7 +8,7 @@ interface InputNumberProps {
   value?: string
   id?: string
   label?: string
-  name: string
+  name?: string
   onChange?: (value: string | undefined) => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
@@ -24,7 +24,7 @@ const InputNumber: FC<InputNumberProps> = ({
   id,
   label,
   onBlur,
-  name,
+  name = '',
   onChange,
   onClick,
   type = 'text',
