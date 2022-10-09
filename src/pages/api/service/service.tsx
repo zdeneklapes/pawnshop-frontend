@@ -11,7 +11,7 @@ export const apiService = ky.create({
 
 export const fetchProducts = async (product: string): Promise<ProductTableFetchingProps[]> => {
   try {
-    return await apiService.get(`product/?status=${product}`).json()
+    return await apiService.get(`product/?data=${product}`).json()
   } catch (error) {
     console.error(error)
     return []
