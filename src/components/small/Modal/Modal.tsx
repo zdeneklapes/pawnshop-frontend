@@ -48,8 +48,8 @@ const CustomModal: FC<InformationModalProps> = ({
               <Dialog.Panel
                 className={clsx(
                   'w-full max-w-md min-w-[405px] transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow  transition-all ',
-                  { 'border border-red-400 bg-red-100': isError },
-                  { 'border border-green-400 bg-green-100': isSuccess }
+                  { 'border border-red-400 bg-red-100 bg-red-50': isError },
+                  { 'border border-green-400 bg-green-100 bg-green-50': isSuccess }
                 )}
               >
                 <Dialog.Title as="h3" className="text-2xl font-medium leading-10 text-gray-900 text-center">

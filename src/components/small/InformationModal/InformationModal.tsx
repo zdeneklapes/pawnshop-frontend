@@ -24,7 +24,7 @@ const InformationModal: FC<InformationModalProps> = ({
       <div className="mt-2">
         <p className="text-black text-center text-lg">{subtitle}</p>
       </div>
-      <div className=" flex mt-4 space-x-6 justify-center text-black">
+      <div className="flex mt-4 space-x-6 justify-center text-black">
         <Button text="Zatvoriť" onClick={() => setIsOpen(false)} className="w-32" submit={isSuccess} cancel={isError} />
       </div>
     </Modal>
