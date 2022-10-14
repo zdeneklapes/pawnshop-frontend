@@ -3,7 +3,7 @@ import { ProductTableFetchingProps } from '@components/medium/ProductTable/Produ
 
 export const apiService = ky.create({
   timeout: false,
-  prefixUrl: 'http://localhost:8000/',
+  prefixUrl: process.env.NEXT_PUBLIC_BASE_API_URL,
   headers: {
     'Content-Type': 'application/json'
   }
