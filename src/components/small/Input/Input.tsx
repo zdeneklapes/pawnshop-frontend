@@ -4,13 +4,14 @@ import { FC, ChangeEvent, MouseEvent } from 'react'
 interface InputProps {
   placeholder?: string
   onClick?: (e: MouseEvent<HTMLInputElement>) => void
-  type?: 'number' | 'text'
+  type?: 'number' | 'text' | 'password'
   value?: string
   id?: string
   label?: string
   name?: string
   onChange?: (value: string | undefined) => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
+  onFocus?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
   classNameInput?: string
   disabled?: boolean
@@ -23,6 +24,7 @@ const Input: FC<InputProps> = ({
   id,
   label,
   onBlur,
+  onFocus,
   name = '',
   onChange,
   onClick,
@@ -46,6 +48,7 @@ const Input: FC<InputProps> = ({
         id={id}
         name={name}
         onBlur={onBlur}
+        onFocus={onFocus}
         onChange={(e) => (onChange ? onChange(e.target.value) : null)}
         onClick={onClick}
         placeholder={placeholder}
