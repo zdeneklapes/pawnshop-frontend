@@ -32,14 +32,6 @@ const PRODUCT_SCHEMA = (): any =>
 interface ProductCreationFormProps {
   product: ProductTableFetchingProps
 }
-// interface ProductEditProps {
-//   user: string
-//   inventoryId: string
-//   productName: string
-//   sellPrice: string
-//   dateCreate: string
-//   dateExtend: string
-// }
 
 const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false)
@@ -63,7 +55,8 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   const handleUpdateProduct = async (jsonObject: any) => {
     // todo any delete
     try {
-      await apiService.patch(`product/${product.id}/`, { json: jsonObject }).json()
+      const authService = apiService.extend({ headers: { Authorization: `Bearer ${localStorage.accessToken}` } })
+      await authService.patch(`product/${product.id}/`, { json: jsonObject }).json()
       setIsOpenInformationSuccessModal(true)
     } catch (error) {
       console.error(error)

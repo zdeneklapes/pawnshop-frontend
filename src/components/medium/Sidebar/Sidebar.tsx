@@ -10,19 +10,37 @@ const navigationRoutes = [
 const SidebarProps = () => {
   const router = useRouter()
   return (
-    <div className="flex mt-2 w-64 border-gray-300 border-r">
-      <nav className="mx-2 divide-y divide-gray-400 w-full ">
+    <div className="flex flex-col mt-2 w-64 border-gray-300 border-r px-2">
+      <div className="flex flex-col justify-center items-center rounded-2xl py-2 px-2 mb-4 border-2 border-black shadow-lg font-medium truncate">
+        <div>{localStorage.getItem('email')}</div>
+        <div className="text-xl">{localStorage.getItem('role') === 'ADMIN' ? 'Admin' : 'Obsluha'}</div>
+      </div>
+
+      <nav className="divide-y divide-gray-400 w-full ">
         {navigationRoutes.map((page) => (
           <Link key={page.route} href={page.route}>
             <span
-              className={clsx('flex flex-col w-full py-4 text-2xl  items-center hover:cursor-pointer', {
-                'font-bold ': router.pathname === page.route
-              })}
+              className={clsx(
+                'flex flex-col w-full py-4 text-2xl  items-center hover:cursor-pointer hover:text-gray-700',
+                {
+                  'font-bold ': router.pathname === page.route
+                }
+              )}
             >
               {page.name}
             </span>
           </Link>
         ))}
+        <span
+          onClick={() => {
+            localStorage.setItem('accessToken', '')
+            localStorage.setItem('refreshToken', '')
+            router.push('/login')
+          }}
+          className="flex flex-col w-full py-4 text-2xl  items-center hover:cursor-pointer hover:text-gray-700"
+        >
+          Odhlasit
+        </span>
       </nav>
     </div>
   )

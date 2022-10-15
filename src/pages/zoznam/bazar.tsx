@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { ProductTableFetchingProps } from '@components/medium/ProductTable/ProductTable.types'
 import { fetchProducts } from '@api/service/service'
 import { ProductTable } from '@components/medium/ProductTable'
+import { AuthLayout } from '@components/big/AuthLayout'
 
 const Bazar: NextPage = () => {
   const [offerProduct, setOfferProduct] = useState<ProductTableFetchingProps[]>([])
@@ -16,16 +17,18 @@ const Bazar: NextPage = () => {
     })
   }, [])
   return (
-    <div>
-      <Head>
-        <title>Bazar</title>
-      </Head>
+    <AuthLayout>
+      <div>
+        <Head>
+          <title>Bazar</title>
+        </Head>
 
-      <MainLayout>
-        <Navbar />
-        <ProductTable products={offerProduct} />
-      </MainLayout>
-    </div>
+        <MainLayout>
+          <Navbar />
+          <ProductTable products={offerProduct} />
+        </MainLayout>
+      </div>
+    </AuthLayout>
   )
 }
 
