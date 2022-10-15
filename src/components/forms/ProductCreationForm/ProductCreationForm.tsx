@@ -49,7 +49,8 @@ const ProductCreationForm = () => {
 
   const getCustomers = async (): Promise<CustomerFetchingProps[]> => {
     try {
-      return await apiService.get('customer/').json()
+      const authService = apiService.extend({ headers: { Authorization: `Bearer ${localStorage.accessToken}` } })
+      return await authService.get('customer/').json()
     } catch (error) {
       console.error(error)
       return []

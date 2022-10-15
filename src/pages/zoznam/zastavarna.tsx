@@ -7,6 +7,7 @@ import { fetchProducts } from '@api/service/service'
 import { ProductTableFetchingProps } from '@components/medium/ProductTable/ProductTable.types'
 
 import { ProductTable } from '@components/medium/ProductTable'
+import { AuthLayout } from '@components/big/AuthLayout'
 
 const Zastavarna: NextPage = () => {
   const [loanProduct, setLoanProduct] = useState<ProductTableFetchingProps[]>([])
@@ -18,18 +19,20 @@ const Zastavarna: NextPage = () => {
   }, [])
 
   return (
-    <div>
-      <Head>
-        <title>Zastavarna</title>
-      </Head>
+    <AuthLayout>
+      <div>
+        <Head>
+          <title>Zastavarna</title>
+        </Head>
 
-      <main>
-        <MainLayout>
-          <Navbar />
-          <ProductTable products={loanProduct} />
-        </MainLayout>
-      </main>
-    </div>
+        <main>
+          <MainLayout>
+            <Navbar />
+            <ProductTable products={loanProduct} />
+          </MainLayout>
+        </main>
+      </div>
+    </AuthLayout>
   )
 }
 
