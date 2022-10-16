@@ -72,7 +72,6 @@ const ProductCreationForm = () => {
         birthplace: values.birthplace,
         id_birth: values.birthId
       },
-      user: 1, // todo delete user
       status: values.isBuy ? 'OFFER' : 'LOAN',
       interest_rate_or_quantity: Number(values.interestRateOrQuantity),
       inventory_id: Number(values.inventoryId),
@@ -81,7 +80,10 @@ const ProductCreationForm = () => {
       sell_price: Number(values.sellPrice)
     }
     try {
-      await apiService
+      const authService = apiService.extend({
+        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+      })
+      await authService
         .post('product/', { json: jsonObject })
         .json()
         .then((res: any) => setPolicyNumber(res.id))
@@ -285,6 +287,8 @@ const ProductCreationForm = () => {
                         }}
                         text="Vyčistiť"
                         cancel
+                        doubleCheck
+                        doubleCheckSubtitle="Naozaj chcete resetovať hodnoty?"
                       />
                       <Button className="w-32" type="submit" text="Potvrdiť" submit />
                     </div>
