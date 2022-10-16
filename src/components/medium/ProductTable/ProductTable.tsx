@@ -14,23 +14,17 @@ const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
     if (!value) {
       return products
     } else {
-      let filteredProducts = products.filter((el) =>
-        el.customer.full_name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      return products.filter(
+        (el) =>
+          el.customer.full_name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+          el.customer.id_birth.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+          el.product_name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+          dateFormatFromDatabase(el.date_create, 'dd/MM/yyyy') === value ||
+          el.id.toString() === value ||
+          el.inventory_id.toString() === value ||
+          el.buy_price.toString() === value ||
+          el.sell_price.toString() === value
       )
-      filteredProducts = filteredProducts.concat(
-        products.filter((el) => el.customer.id_birth.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
-      )
-      filteredProducts = filteredProducts.concat(
-        products.filter((el) => el.product_name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
-      )
-      filteredProducts = filteredProducts.concat(
-        products.filter((el) => dateFormatFromDatabase(el.date_create, 'dd/MM/yyyy') === value)
-      )
-      filteredProducts = filteredProducts.concat(products.filter((el) => el.id.toString() === value))
-      filteredProducts = filteredProducts.concat(products.filter((el) => el.inventory_id.toString() === value))
-      filteredProducts = filteredProducts.concat(products.filter((el) => el.buy_price.toString() === value))
-      filteredProducts = filteredProducts.concat(products.filter((el) => el.sell_price.toString() === value))
-      return filteredProducts.filter((item, index) => filteredProducts.indexOf(item) === index)
     }
   }
 
