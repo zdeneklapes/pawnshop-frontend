@@ -20,7 +20,10 @@ const PRODUCT_SCHEMA = (): any =>
     .shape({
       dateCreate: string()
         .required()
-        .matches(/^\d{2}[/]\d{2}[/]\d{4}/),
+        .matches(/^\d{2}[/]\d{2}[/]\d{4}$/),
+      dateExtend: string()
+        .required()
+        .matches(/^\d{2}[/]\d{2}[/]\d{4}$/),
       inventoryId: string().required().matches(/^\d+$/),
       productName: string().required(),
       sellPrice: string()
@@ -44,14 +47,12 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [price, setPrice] = useState('')
 
   const PRODUCT_INIT_VALUES = {
-    user: '1', // todo user
     inventoryId: product.inventory_id.toString(),
     productName: product.product_name,
     sellPrice: product.sell_price.toString(),
     dateCreate: dateFormatFromDatabase(product.date_create),
     dateExtend: dateFormatFromDatabase(product.date_extend)
   }
-
   const handleUpdateProduct = async (jsonObject: any) => {
     // todo any delete
     try {
@@ -162,7 +163,11 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                           classNameInput="w-16"
                           name="interestRateOrQuantity"
                           label={product.status === 'OFFER' ? 'ks' : '%'}
-                          value={product.interest_rate_or_quantity.toString()}
+                          value={
+                            product.status === 'OFFER'
+                              ? product.interest_rate_or_quantity.toString()
+                              : Number(product.interest_rate_or_quantity).toFixed()
+                          }
                           disabled
                         />
                       </div>
@@ -179,8 +184,22 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                   </div>
                   <div className="py-6 space-y-4">
                     <div className={STYLE_ROW_FORM}>
-                      <Input name="startDate" label="Uzavírají dne" value={values.dateCreate} />
-                      <Input name="startDate" label="Prodlouženo" value={values.dateExtend} />
+                      <Input
+                        name="dateCreate"
+                        label="Uzavírají dne"
+                        value={values.dateCreate}
+                        onChange={(value) => setFieldValue('dateCreate', value)}
+                        errored={!!(errors.dateCreate && touched.dateCreate)}
+                        disabled={localStorage.getItem('role') !== 'ADMIN'}
+                      />
+                      <Input
+                        name="dateExtend"
+                        label="Prodlouženo"
+                        value={values.dateExtend}
+                        onChange={(value) => setFieldValue('dateExtend', value)}
+                        errored={!!(errors.dateExtend && touched.dateExtend)}
+                        disabled={localStorage.getItem('role') !== 'ADMIN'}
+                      />
                       <Input
                         name="endDate"
                         label="Splatná dne"
@@ -253,7 +272,6 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                   handleSubmit={() => {
                     handleUpdateProduct({
                       update: 'UPDATE_DATA',
-                      user: 1, // todo delete user
                       inventory_id: Number(values.inventoryId),
                       product_name: values.productName,
                       sell_price: Number(values.sellPrice),

@@ -72,7 +72,6 @@ const ProductCreationForm = () => {
         birthplace: values.birthplace,
         id_birth: values.birthId
       },
-      user: 1, // todo delete user
       status: values.isBuy ? 'OFFER' : 'LOAN',
       interest_rate_or_quantity: Number(values.interestRateOrQuantity),
       inventory_id: Number(values.inventoryId),

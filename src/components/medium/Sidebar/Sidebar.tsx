@@ -33,8 +33,8 @@ const SidebarProps = () => {
         ))}
         <span
           onClick={() => {
-            localStorage.setItem('accessToken', '')
-            localStorage.setItem('refreshToken', '')
+            localStorage.setItem('accessToken', '-')
+            localStorage.setItem('refreshToken', '-')
             router.push('/login')
           }}
           className="flex flex-col w-full py-4 text-2xl  items-center hover:cursor-pointer hover:text-gray-700"
