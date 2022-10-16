@@ -284,6 +284,8 @@ const ProductCreationForm = () => {
                         }}
                         text="Vyčistiť"
                         cancel
+                        doubleCheck
+                        doubleCheckSubtitle="Naozaj chcete resetovať hodnoty?"
                       />
                       <Button className="w-32" type="submit" text="Potvrdiť" submit />
                     </div>

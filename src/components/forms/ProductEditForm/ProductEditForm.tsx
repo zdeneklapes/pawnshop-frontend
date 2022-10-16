@@ -165,8 +165,8 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                           label={product.status === 'OFFER' ? 'ks' : '%'}
                           value={
                             product.status === 'OFFER'
-                              ? product.interest_rate_or_quantity.toString()
-                              : Number(product.interest_rate_or_quantity).toFixed()
+                              ? Number(product.interest_rate_or_quantity).toFixed()
+                              : product.interest_rate_or_quantity.toString()
                           }
                           disabled
                         />
@@ -240,6 +240,8 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                               update: 'LOAN_RETURN'
                             })
                           }
+                          doubleCheck
+                          doubleCheckSubtitle="Naozaj chcete vrátit?"
                         />
                         <Button
                           className="w-48"
@@ -249,19 +251,23 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                               update: 'LOAN_EXTEND'
                             })
                           }
+                          doubleCheck
+                          doubleCheckSubtitle="Naozaj chcete prodloužiť?"
                         />
                         {product.status === 'AFTER_MATURITY' ? (
                           <Button
                             className="w-48"
                             text="Presunout do bazaru"
                             onClick={() => setIsOpenPriceModal(true)}
+                            doubleCheck
+                            doubleCheckSubtitle="Naozaj chcete presunout do bazaru?"
                           />
                         ) : null}
                       </div>
                     )}
 
                     <div className="flex items-center justify-center space-x-16 mx-5">
-                      <Button className="w-48" text="Tlačiť" />
+                      <Button className="w-48" text="Tlačiť" doubleCheck doubleCheckSubtitle="Naozaj chcete tlačiť?" />
                       <Button className="w-48" type="submit" text="Potvrdiť" submit />
                     </div>
                   </div>

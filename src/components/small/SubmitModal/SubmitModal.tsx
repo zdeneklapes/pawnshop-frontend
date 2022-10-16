@@ -7,7 +7,7 @@ interface SubmitModalProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>
   title?: string
   subtitle?: string
-  handleSubmit: () => void
+  handleSubmit?: () => void
 }
 
 const SubmitModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', subtitle = '', handleSubmit }) => {
@@ -22,7 +22,7 @@ const SubmitModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', subt
           text="Potvrdiť"
           onClick={() => {
             setIsOpen(false)
-            handleSubmit()
+            handleSubmit && handleSubmit()
           }}
           className="w-32"
           submit
