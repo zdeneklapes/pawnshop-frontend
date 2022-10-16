@@ -54,11 +54,11 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
     dateExtend: dateFormatFromDatabase(product.date_extend)
   }
   const handleUpdateProduct = async (jsonObject: any) => {
-    // todo any delete
     try {
       const authService = apiService.extend({ headers: { Authorization: `Bearer ${localStorage.accessToken}` } })
-      await authService.patch(`product/${product.id}/`, { json: jsonObject }).json()
+      const result = await authService.patch(`product/${product.id}/`, { json: jsonObject }).json()
       setIsOpenInformationSuccessModal(true)
+      return result
     } catch (error) {
       console.error(error)
       setIsOpenInformationErrorModal(true)
@@ -246,11 +246,13 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                         <Button
                           className="w-48"
                           text="Prodloužiť"
-                          onClick={() =>
+                          onClick={() => {
                             handleUpdateProduct({
                               update: 'LOAN_EXTEND'
+                            }).then((res: any) => {
+                              setFieldValue('dateExtend', dateFormatFromDatabase(res.date_extend))
                             })
-                          }
+                          }}
                           doubleCheck
                           doubleCheckSubtitle="Naozaj chcete prodloužiť?"
                         />
