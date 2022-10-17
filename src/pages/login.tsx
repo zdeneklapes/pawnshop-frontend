@@ -1,20 +1,22 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Router from 'next/router'
-
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 import { Input } from '@components/small/Input'
 import { Button } from '@components/small/Button'
-
-import { apiService } from '@api/service/service'
 import { AuthLayout } from '@components/big/AuthLayout'
 import { getUserInformation } from '@components/globals/utils'
+
+import { apiService } from '@api/service/service'
+import { UserContext } from '@pages/_app'
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+
+  const { setUser }: any = useContext(UserContext)
 
   const getToken = async (): Promise<{ access: string; refresh: string } | undefined> => {
     try {
@@ -32,13 +34,9 @@ const Login: NextPage = () => {
   const handleSubmit = async () => {
     const token = await getToken()
     if (token) {
-      const user = getUserInformation(token.access)
       localStorage.setItem('accessToken', token.access)
       localStorage.setItem('refreshToken', token.refresh)
-      localStorage.setItem('user', user.user_id)
-      localStorage.setItem('email', user.email)
-      localStorage.setItem('role', user.role)
-
+      setUser(getUserInformation(token.access))
       await Router.push('/zoznam/zastavarna/')
     }
   }
