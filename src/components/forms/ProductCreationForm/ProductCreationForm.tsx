@@ -49,8 +49,7 @@ const ProductCreationForm = () => {
 
   const getCustomers = async (): Promise<CustomerFetchingProps[]> => {
     try {
-      const authService = apiService.extend({ headers: { Authorization: `Bearer ${localStorage.accessToken}` } })
-      return await authService.get('customer/').json()
+      return await apiService.get('customer/').json()
     } catch (error) {
       console.error(error)
       return []
@@ -80,10 +79,7 @@ const ProductCreationForm = () => {
       sell_price: Number(values.sellPrice)
     }
     try {
-      const authService = apiService.extend({
-        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
-      })
-      await authService
+      await apiService
         .post('product/', { json: jsonObject })
         .json()
         .then((res: any) => setPolicyNumber(res.id))

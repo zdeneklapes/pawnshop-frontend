@@ -1,4 +1,4 @@
-import { useState, FC } from 'react'
+import { useState, FC, useContext } from 'react'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
 
@@ -14,6 +14,7 @@ import { ProductTableFetchingProps } from '@components/medium/ProductTable/Produ
 import { STYLE_ROW_FORM } from '@components/forms/ProductCreationForm/ProductCreationForm.const'
 
 import { apiService } from '@api/service/service'
+import { UserContext } from '@pages/_app'
 
 const PRODUCT_SCHEMA = (): any =>
   object()
@@ -46,6 +47,8 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [quantity, setQuantity] = useState('')
   const [price, setPrice] = useState('')
 
+  const { user }: any = useContext(UserContext)
+
   const PRODUCT_INIT_VALUES = {
     inventoryId: product.inventory_id.toString(),
     productName: product.product_name,
@@ -55,8 +58,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   }
   const handleUpdateProduct = async (jsonObject: any) => {
     try {
-      const authService = apiService.extend({ headers: { Authorization: `Bearer ${localStorage.accessToken}` } })
-      const result = await authService.patch(`product/${product.id}/`, { json: jsonObject }).json()
+      const result = await apiService.patch(`product/${product.id}/`, { json: jsonObject }).json()
       setIsOpenInformationSuccessModal(true)
       return result
     } catch (error) {
@@ -190,7 +192,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                         value={values.dateCreate}
                         onChange={(value) => setFieldValue('dateCreate', value)}
                         errored={!!(errors.dateCreate && touched.dateCreate)}
-                        disabled={localStorage.getItem('role') !== 'ADMIN'}
+                        disabled={user.role !== 'ADMIN'}
                       />
                       <Input
                         name="dateExtend"
@@ -198,7 +200,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                         value={values.dateExtend}
                         onChange={(value) => setFieldValue('dateExtend', value)}
                         errored={!!(errors.dateExtend && touched.dateExtend)}
-                        disabled={localStorage.getItem('role') !== 'ADMIN'}
+                        disabled={user.role !== 'ADMIN'}
                       />
                       <Input
                         name="endDate"
