@@ -26,3 +26,19 @@ export const fetchProduct = async (productId: number): Promise<ProductTableFetch
     console.error(error)
   }
 }
+
+export const fetchUsers = async (): Promise<{ email: string; role: string; id: string }[] | undefined> => {
+  try {
+    return await apiService.get(`authentication/user`).json()
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const fetchUser = async (userId: number): Promise<{ email: string; role: string; id: string } | undefined> => {
+  try {
+    return await apiService.get(`authentication/user/${userId}/`).json()
+  } catch (error) {
+    console.error(error)
+  }
+}

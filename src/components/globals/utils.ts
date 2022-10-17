@@ -20,3 +20,7 @@ export const getUserInformation = (accessToken: string | null): { user_id: strin
   }
   return { user_id: '', email: '', role: '' }
 }
+
+export const getUserRole = (role: string): string => {
+  return role === 'ADMIN' ? 'Admin' : 'Obsluha'
+}
