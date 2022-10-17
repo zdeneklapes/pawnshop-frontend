@@ -15,7 +15,6 @@ const Register = () => {
   const router = useRouter()
 
   const createAttendant = async () => {
-    // todo check, neislo api
     try {
       await apiService
         .post('authentication/attendant/', {

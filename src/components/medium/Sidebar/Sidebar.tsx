@@ -13,11 +13,13 @@ const navigationRoutes = [
 
 const SidebarProps = () => {
   const { user }: any = useContext(UserContext)
-
   const router = useRouter()
   return (
     <div className="flex flex-col mt-2 w-64 border-gray-300 border-r px-2">
-      <div className="flex flex-col justify-center items-center rounded-2xl py-2 px-2 mb-4 border-2 border-black shadow-lg font-medium truncate">
+      <div
+        className="flex flex-col justify-center items-center rounded-2xl py-2 px-2 mb-4 border-2 border-black shadow-lg font-medium truncate hover:cursor-pointer hover:bg-gray-100"
+        onClick={() => router.push('/uzivatel/profil')}
+      >
         <div>{user.email}</div>
         <div className="text-xl">{getUserRole(user.role)}</div>
       </div>
