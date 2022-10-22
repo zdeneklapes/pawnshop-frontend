@@ -12,7 +12,12 @@ export const apiService = ky.create({
 
 export const fetchProducts = async (product: string): Promise<ProductTableFetchingProps[]> => {
   try {
-    return await apiService.get(`product/?data=${product}`).json()
+    const apiAuthenticated = apiService.extend({
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    return await apiAuthenticated.get(`product/?data=${product}`).json()
   } catch (error) {
     console.error(error)
     return []
@@ -21,7 +26,12 @@ export const fetchProducts = async (product: string): Promise<ProductTableFetchi
 
 export const fetchProduct = async (productId: number): Promise<ProductTableFetchingProps | undefined> => {
   try {
-    return await apiService.get(`product/${productId}/`).json()
+    const apiAuthenticated = apiService.extend({
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    return await apiAuthenticated.get(`product/${productId}/`).json()
   } catch (error) {
     console.error(error)
   }
@@ -29,7 +39,12 @@ export const fetchProduct = async (productId: number): Promise<ProductTableFetch
 
 export const fetchUsers = async (): Promise<{ email: string; role: string; id: string }[] | undefined> => {
   try {
-    return await apiService.get(`authentication/user`).json()
+    const apiAuthenticated = apiService.extend({
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    return await apiAuthenticated.get(`authentication/user`).json()
   } catch (error) {
     console.error(error)
   }
@@ -37,7 +52,12 @@ export const fetchUsers = async (): Promise<{ email: string; role: string; id: s
 
 export const fetchUser = async (userId: number): Promise<{ email: string; role: string; id: string } | undefined> => {
   try {
-    return await apiService.get(`authentication/user/${userId}/`).json()
+    const apiAuthenticated = apiService.extend({
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    return await apiAuthenticated.get(`authentication/user/${userId}/`).json()
   } catch (error) {
     console.error(error)
   }

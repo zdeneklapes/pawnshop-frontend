@@ -58,7 +58,12 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
   }
   const handleUpdateProduct = async (jsonObject: any) => {
     try {
-      const result = await apiService.patch(`product/${product.id}/`, { json: jsonObject }).json()
+      const apiAuthenticated = apiService.extend({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+      const result = await apiAuthenticated.patch(`product/${product.id}/`, { json: jsonObject }).json()
       setIsOpenInformationSuccessModal(true)
       return result
     } catch (error) {
