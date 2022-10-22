@@ -27,7 +27,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
 
   const handleDeleteUser = async () => {
     try {
-      await apiService.delete(`authentication/user/${userToShow.id}`).then(() => setIsOpenInformationSuccessModal(true))
+      await apiService.delete(`authentication/user/${userToShow.id}`).then(() => router.push('/obsluha'))
     } catch (error) {
       console.error(error)
       setErrorMessage('Zmazání obsluhy slyhalo')

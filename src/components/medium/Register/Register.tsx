@@ -18,7 +18,7 @@ const Register = () => {
     try {
       await apiService
         .post('authentication/attendant/', {
-          json: { email: email, password: password, old_or_verify_password: passwordCheck }
+          json: { email: email, password: password, verify_password: passwordCheck }
         })
         .then(() => router.reload())
     } catch (error) {
