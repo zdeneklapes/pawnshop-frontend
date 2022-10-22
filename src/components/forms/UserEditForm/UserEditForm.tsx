@@ -1,4 +1,4 @@
-import { useState, FC, useEffect } from 'react'
+import { useState, FC, useEffect, useContext } from 'react'
 
 import { Input } from '@components/small/Input'
 import { Button } from '@components/small/Button'
@@ -6,12 +6,13 @@ import { getUserRole } from '@components/globals/utils'
 import { apiService } from '@api/service/service'
 import { useRouter } from 'next/router'
 import { InformationModal } from '@components/small/InformationModal'
+import { UserContext } from '@pages/_app'
 
 interface UserEditFormProps {
-  user: { email: string; role: string; id: string }
+  userToShow: { email: string; role: string; id: string }
 }
 
-const UserEditForm: FC<UserEditFormProps> = ({ user }) => {
+const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
   const [password, setPassword] = useState('')
   const [passwordCheck, setPasswordCheck] = useState('')
   const [oldPassword, setOldPassword] = useState('')
@@ -22,10 +23,11 @@ const UserEditForm: FC<UserEditFormProps> = ({ user }) => {
   const [error, setError] = useState('')
 
   const router = useRouter()
+  const { user }: any = useContext(UserContext)
 
   const handleDeleteUser = async () => {
     try {
-      await apiService.delete(`authentication/user/${user.id}`).then(() => setIsOpenInformationSuccessModal(true))
+      await apiService.delete(`authentication/user/${userToShow.id}`).then(() => setIsOpenInformationSuccessModal(true))
     } catch (error) {
       console.error(error)
       setErrorMessage('Zmazání obsluhy slyhalo')
@@ -36,8 +38,13 @@ const UserEditForm: FC<UserEditFormProps> = ({ user }) => {
     if (password && passwordCheck && oldPassword && password.length >= 8 && password === passwordCheck) {
       try {
         await apiService
-          .patch(`authentication/user/${user.id}/`, {
-            json: { email: user.email, password: password, verify_password: passwordCheck, old_password: oldPassword }
+          .patch(`authentication/${user.role === 'ADMIN' ? 'user' : 'attendant'}/${userToShow.id}/`, {
+            json: {
+              email: userToShow.email,
+              password: password,
+              verify_password: passwordCheck,
+              old_password: oldPassword
+            }
           })
           .then(() => router.push('/obsluha'))
       } catch (error) {
@@ -57,8 +64,8 @@ const UserEditForm: FC<UserEditFormProps> = ({ user }) => {
       <div className="flex space-x-6 items-center">
         <div className="  p-8 border rounded-xl border-gray-500 shadow-2xl space-y-4 w-[700px] items-center mx-24 ">
           <div className="text-center space-y-1 font-medium border-b border-gray-300 pb-4 w-full">
-            <div className="text-2xl">{user.email}</div>
-            <div className="text-xl">{getUserRole(user.role)}</div>
+            <div className="text-2xl">{userToShow.email}</div>
+            <div className="text-xl">{getUserRole(userToShow.role)}</div>
           </div>
           <div className="flex flex-col items-center space-y-4 ">
             <div className="text-xl font-medium">Zmena hesla</div>
@@ -99,7 +106,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ user }) => {
               onClick={() => handlePasswordChange()}
             />
           </div>
-          {user.role !== 'ADMIN' ? (
+          {userToShow.role !== 'ADMIN' && user.role === 'ADMIN' ? (
             <div className="flex justify-center border-t border-gray-300 pt-6  w-full">
               <Button
                 className="w-64"

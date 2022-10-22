@@ -19,7 +19,7 @@ const UserProfile = () => {
 
         <MainLayout>
           <div className="flex items-center justify-center h-full w-full">
-            <UserEditForm user={user} />
+            <UserEditForm userToShow={user} />
           </div>
         </MainLayout>
       </div>

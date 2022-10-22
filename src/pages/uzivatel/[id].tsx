@@ -28,7 +28,11 @@ const Uzivatel = () => {
 
         <MainLayout>
           <div className="flex items-center justify-center h-full w-full">
-            {user ? <UserEditForm user={user} /> : <p className="font-md text-2xl">Uživatel se nepodařil načíst.</p>}
+            {user ? (
+              <UserEditForm userToShow={user} />
+            ) : (
+              <p className="font-md text-2xl">Uživatel se nepodařil načíst.</p>
+            )}
           </div>
         </MainLayout>
       </div>
