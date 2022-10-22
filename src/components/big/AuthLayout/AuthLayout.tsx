@@ -41,10 +41,12 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children, isLogin = false, isAdminPag
   }
 
   const authenticate = () => {
-    return axios
+    axios
       .post('/authentication/token/verify/', { token: localStorage.getItem('accessToken') })
       .then(() => processSuccess())
-      .catch(() => refreshAuthentication())
+      .catch(() => {
+        refreshAuthentication()
+      })
   }
   const refreshAuthentication = () => {
     axios

@@ -4,7 +4,7 @@ import { MainLayout } from '@components/big/MainLayout'
 import { AuthLayout } from '@components/big/AuthLayout'
 import UserTable from '@components/medium/UserTable/UserTable'
 import { Register } from '@components/medium/Register'
-// todo ine verify authLayout na admina
+
 const Obsluha: NextPage = () => {
   return (
     <AuthLayout isAdminPage>
