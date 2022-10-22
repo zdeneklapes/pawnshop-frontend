@@ -27,7 +27,12 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
 
   const handleDeleteUser = async () => {
     try {
-      await apiService.delete(`authentication/user/${userToShow.id}`).then(() => router.push('/obsluha'))
+      const apiAuthenticated = apiService.extend({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+      await apiAuthenticated.delete(`authentication/user/${userToShow.id}`).then(() => router.push('/obsluha'))
     } catch (error) {
       console.error(error)
       setErrorMessage('Zmazání obsluhy slyhalo')
@@ -37,7 +42,12 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
   const handlePasswordChange = async () => {
     if (password && passwordCheck && oldPassword && password.length >= 8 && password === passwordCheck) {
       try {
-        await apiService
+        const apiAuthenticated = apiService.extend({
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        })
+        await apiAuthenticated
           .patch(`authentication/${user.role === 'ADMIN' ? 'user' : 'attendant'}/${userToShow.id}/`, {
             json: {
               email: userToShow.email,

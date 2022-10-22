@@ -16,7 +16,12 @@ const Register = () => {
 
   const createAttendant = async () => {
     try {
-      await apiService
+      const apiAuthenticated = apiService.extend({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+      await apiAuthenticated
         .post('authentication/attendant/', {
           json: { email: email, password: password, verify_password: passwordCheck }
         })

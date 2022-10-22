@@ -20,7 +20,12 @@ const Login: NextPage = () => {
 
   const getToken = async (): Promise<{ access: string; refresh: string } | undefined> => {
     try {
-      return await apiService
+      const apiAuthenticated = apiService.extend({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+      return await apiAuthenticated
         .post('authentication/token/create/', { json: { email: email, password: password } })
         .json()
     } catch (error: any) {
