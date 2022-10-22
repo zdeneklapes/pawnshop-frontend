@@ -30,14 +30,13 @@ const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
 
   return (
     <div>
-      <div className="w-full justify-center flex ">
-        <Input
-          name="autocomplete"
-          classNameInput="w-96"
-          placeholder="Vyhladávaní"
-          onChange={(value) => setPro(getFilteredProducts(value))}
-        />
-      </div>
+      <Input
+        className="flex justify-center"
+        name="autocomplete"
+        classNameInput="w-96"
+        placeholder="Vyhladávaní"
+        onChange={(value) => setPro(getFilteredProducts(value))}
+      />
       <div className="flex flex-row p-3 font-bold border-gray-400 rounded-t border-x border-t  mx-10 mt-10">
         <div className="w-[7%]">Smlouva</div>
         <div className="w-[7%]">Inv. číslo</div>

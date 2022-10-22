@@ -54,12 +54,17 @@ const Login: NextPage = () => {
         <main className="flex h-screen items-center justify-center bg-gray-200 ">
           <div className="flex flex-col justify-center items-center p-8 border rounded-xl border-gray-500 shadow-2xl space-y-4 px-24">
             <div className="text-2xl font-medium">Přihlásení</div>
-            <Input label="email" classNameInput="w-64" onChange={(value) => value && setEmail(value)} value={email} />
+            <Input
+              label="email"
+              classNameInput="w-64"
+              onChange={(value) => setEmail(value ? value : '')}
+              value={email}
+            />
             <Input
               label="heslo"
               type="password"
               classNameInput="w-64"
-              onChange={(value) => value && setPassword(value)}
+              onChange={(value) => setPassword(value ? value : '')}
               value={password}
             />
             <div className="text-red-700">{error}</div>

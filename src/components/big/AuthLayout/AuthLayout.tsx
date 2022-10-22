@@ -1,22 +1,35 @@
-import { FC, ReactNode, useEffect, useState } from 'react'
+import { FC, ReactNode, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import { UserContext } from '@pages/_app'
+import { getUserInformation } from '@components/globals/utils'
 
 interface AuthLayoutProps {
   children?: ReactNode
   isLogin?: boolean
+  isAdminPage?: boolean
 }
 
-const AuthLayout: FC<AuthLayoutProps> = ({ children, isLogin = false }) => {
+const AuthLayout: FC<AuthLayoutProps> = ({ children, isLogin = false, isAdminPage = false }) => {
   const [showPage, setShowPage] = useState(false)
 
   const router = useRouter()
+  const { user }: any = useContext(UserContext)
 
   const processSuccess = () => {
     if (isLogin) {
       router.push('/')
     } else {
-      setShowPage(true)
+      if (isAdminPage) {
+        const role = user.role ? user.role : getUserInformation(localStorage.getItem('accessToken')).role
+        if (role === 'ADMIN') {
+          setShowPage(true)
+        } else {
+          router.push('/')
+        }
+      } else {
+        setShowPage(true)
+      }
     }
   }
   const processFailure = () => {
@@ -28,10 +41,12 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children, isLogin = false }) => {
   }
 
   const authenticate = () => {
-    return axios
+    axios
       .post('/authentication/token/verify/', { token: localStorage.getItem('accessToken') })
       .then(() => processSuccess())
-      .catch(() => refreshAuthentication())
+      .catch(() => {
+        refreshAuthentication()
+      })
   }
   const refreshAuthentication = () => {
     axios

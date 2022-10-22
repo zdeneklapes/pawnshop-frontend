@@ -16,6 +16,7 @@ interface InputProps {
   classNameInput?: string
   disabled?: boolean
   errored?: boolean
+  autocomplete?: string
 }
 
 const Input: FC<InputProps> = ({
@@ -31,6 +32,7 @@ const Input: FC<InputProps> = ({
   type = 'text',
   value,
   placeholder = '',
+  autocomplete = 'off',
   disabled = false,
   errored = false
 }) => {
@@ -55,7 +57,7 @@ const Input: FC<InputProps> = ({
         type={type}
         value={value}
         disabled={disabled}
-        autoComplete="off"
+        autoComplete={autocomplete}
       />
     </div>
   )

@@ -14,8 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
   axios.defaults.headers.common['Content-Type'] = 'application/json'
-  // axios.defaults.headers.common['Authorization'] =
-  //   typeof window !== 'undefined' ? `Bearer ${localStorage.getItem('accessToken')}` : ''
 
   useEffect(() => {
     if (router.pathname === '/') {
