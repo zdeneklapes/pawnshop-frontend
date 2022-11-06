@@ -30,7 +30,7 @@ const Login: NextPage = () => {
         .json()
     } catch (error: any) {
       console.error(error)
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         setError('Nesprávnej email nebo heslo')
       }
     }
@@ -57,7 +57,7 @@ const Login: NextPage = () => {
         </Head>
 
         <main className="flex h-screen items-center justify-center bg-gray-200 ">
-          <div className="flex flex-col justify-center items-center p-8 border rounded-xl border-gray-500 shadow-2xl space-y-4 px-24">
+          <div className="flex flex-col items-center justify-center space-y-4 rounded-xl border border-gray-500 p-8 px-24 shadow-2xl">
             <div className="text-2xl font-medium">Přihlásení</div>
             <Input
               label="email"
