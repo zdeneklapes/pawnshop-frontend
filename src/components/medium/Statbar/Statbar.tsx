@@ -1,18 +1,22 @@
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useContext } from 'react'
+import { UserContext } from '@pages/_app'
 
 const navigationRoutes = [
-  { route: '/zoznam/zastavarna', name: 'Zastavárna' },
-  { route: '/zoznam/medzisklad', name: 'Mezisklad' },
-  { route: '/zoznam/bazar', name: 'Bazar' }
+  { route: '/statistika/statistika', name: 'Vsechny' },
+  { route: '/statistika/denna', name: 'Denne' },
+  { route: '/statistika/shopstat', name: 'Obchod' }
 ]
 
-const Navbar = () => {
+const Statbar = () => {
+  const { user }: any = useContext(UserContext)
   const router = useRouter()
   return (
-    <nav className="flex flex-row justify-center space-x-20 w-full my-10 ">
-      {navigationRoutes.map((page) => (
+    <nav className="relative flex flex-row justify-center space-x-20 w-full my-10 ">
+      {navigationRoutes.map((page) => 
+      (page.route !== '/statistika/denna' && page.route !== '/statistika/shopstat') || user.role === 'ADMIN' ? (
         <Link key={page.route} href={page.route}>
           <span
             className={clsx(
@@ -25,9 +29,10 @@ const Navbar = () => {
             {page.name}
           </span>
         </Link>
-      ))}
+      ) : null
+      )}
     </nav>
   )
 }
 
-export default Navbar
+export default Statbar

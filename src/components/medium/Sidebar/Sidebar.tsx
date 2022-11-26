@@ -6,9 +6,10 @@ import { UserContext } from '@pages/_app'
 import { getUserRole } from '@components/globals/utils'
 
 const navigationRoutes = [
-  { route: '/zoznam/zastavarna', name: 'Zoznam' },
+  { route: '/zoznam/zastavarna', name: 'Seznam' },
   { route: '/vytvorit', name: 'Vytvořiť' },
-  { route: '/obsluha', name: 'Obsluha' }
+  { route: '/obsluha', name: 'Obsluha' },
+  { route: '/statistika/statistika', name: 'Statistika' }
 ]
 
 const SidebarProps = () => {
