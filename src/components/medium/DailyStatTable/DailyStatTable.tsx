@@ -6,7 +6,9 @@ import { Input } from '@components/small/Input'
 const DailyStatTable: FC<DailyStatTableProps> = ({ dailystats = [] }) => {
   const [dailySta, setDailySta] = useState(dailystats)
   useEffect(() => {
-    setDailySta(dailystats)
+    setDailySta(dailystats.sort(function(a, b){
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+}))
   }, [dailystats])
 
   const getFilteredDailyStats = (value?: string) => {

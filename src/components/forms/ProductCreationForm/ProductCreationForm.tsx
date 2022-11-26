@@ -53,6 +53,10 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
           "inventoryId",
           product.inventory_id
         );
+        formikRef.current.setFieldValue(
+          "buyPrice",
+          product.buy_price
+        );
         setIsProduct(true);
       }
       }

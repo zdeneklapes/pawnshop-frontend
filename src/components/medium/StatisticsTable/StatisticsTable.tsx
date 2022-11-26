@@ -7,7 +7,9 @@ import Router from 'next/router'
 const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
   const [stat, setStat] = useState(statistics)
   useEffect(() => {
-    setStat(statistics)
+    setStat(statistics.sort(function(a, b){
+    return b.id - a.id;
+}))
   }, [statistics])
 
   const getFilteredStatistics = (value?: string) => {
