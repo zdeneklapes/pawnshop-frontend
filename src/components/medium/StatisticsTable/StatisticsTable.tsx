@@ -42,12 +42,11 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
       />
       <div className="mx-10 mt-10 flex flex-row rounded-t border-x border-t border-gray-400  p-3 font-bold">
         <div className="w-[9%]">Stat id</div>
-        <div className="w-[13%]">Kdo</div>
+        <div className="w-[15%]">Kdo</div>
+        <div className="w-[15%]">Produkt</div>
         <div className="w-[17%]">Datum</div>
-        <div className="w-[25%]">Ukon</div>
-        <div className="w-[9%]">Pocet</div>
-        <div className="w-[9%]">Cena</div>
-        <div className="w-[9%]">Profit</div>
+        <div className="w-[28%]">Ukon</div>
+        <div className="w-[8%]">Cena</div>
         <div className="w-[9%]">Produkt</div>
       </div>
       <div className="mx-10 mb-4 flex flex-col divide-y divide-gray-400 overflow-y-auto rounded-b border border-gray-400">
@@ -63,12 +62,11 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
             className="flex w-full flex-row items-center space-x-1 p-3 hover:cursor-pointer hover:border-black  hover:bg-gray-50"
           >
             <div className="w-[9%] truncate"> {statistic.id}</div>
-            <div className="w-[13%] truncate"> {statistic.username}</div>
+            <div className="w-[15%] truncate"> {statistic.username}</div>
+            <div className="w-[15%] truncate"> {statistic.product_name}</div>
             <div className="w-[17%] truncate"> {dateFormatFromDatabase(statistic.datetime, 'dd/MM/yyyy HH:mm')}</div>
-            <div className="w-[25%] truncate "> {statistic.description}</div>
-            <div className="w-[9%] truncate"> {statistic.amount}</div>
+            <div className="w-[28%] truncate "> {statistic.description}</div>
             <div className="w-[9%] truncate"> {statistic.price}</div>
-            <div className="w-[9%] truncate"> {statistic.profit}</div>
             <div className="w-[9%] truncate"> {statistic.product}</div>
           </div>
         ))}
