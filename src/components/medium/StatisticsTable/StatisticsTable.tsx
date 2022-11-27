@@ -55,7 +55,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
             onClick={() => Router.push({
           pathname: '/vytvorit',
           query: { productid: statistic.product },
-        })} //todo
+        })}
             className="flex flex-row space-x-1 items-center w-full p-3 hover:border-black hover:bg-gray-50  hover:cursor-pointer"
           >
             <div className="w-[9%] truncate"> {statistic.id}</div>
