@@ -23,7 +23,7 @@ const SidebarProps = () => {
     fetchStatistics('CASH_AMOUNT').then((fetchedCashAmountStats) => {
       setCashAmountStat(fetchedCashAmountStats)
     })
-  }, [])
+  })
   return (
     <div className="mt-2 flex w-64 flex-col border-r border-gray-300 px-2">
       <div
