@@ -44,10 +44,10 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
         <div className="w-[9%]">Stat id</div>
         <div className="w-[15%]">Kdo</div>
         <div className="w-[15%]">Produkt</div>
+        <div className="w-[9%]">Produkt id</div>
         <div className="w-[17%]">Datum</div>
         <div className="w-[28%]">Ukon</div>
         <div className="w-[8%]">Cena</div>
-        <div className="w-[9%]">Produkt</div>
       </div>
       <div className="mx-10 mb-4 flex flex-col divide-y divide-gray-400 overflow-y-auto rounded-b border border-gray-400">
         {stat.map((statistic) => (
@@ -64,10 +64,10 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
             <div className="w-[9%] truncate"> {statistic.id}</div>
             <div className="w-[15%] truncate"> {statistic.username}</div>
             <div className="w-[15%] truncate"> {statistic.product_name}</div>
+            <div className="w-[9%] truncate"> {statistic.product}</div>
             <div className="w-[17%] truncate"> {dateFormatFromDatabase(statistic.datetime, 'dd/MM/yyyy HH:mm')}</div>
             <div className="w-[28%] truncate "> {statistic.description}</div>
             <div className="w-[9%] truncate"> {statistic.price}</div>
-            <div className="w-[9%] truncate"> {statistic.product}</div>
           </div>
         ))}
       </div>

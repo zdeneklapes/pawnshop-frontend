@@ -5,9 +5,10 @@ export interface StatisticsTableFetchingProps {
   datetime: string
   description: string
   price: number
-  product: string
+  product: number
   username: string
   user: number
+  product_name: string
 }
 
 export interface StatisticsTableProps {
