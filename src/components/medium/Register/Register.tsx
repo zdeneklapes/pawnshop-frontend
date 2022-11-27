@@ -80,7 +80,7 @@ const Register = () => {
           autocomplete="new-password"
         />
         <Input
-          label="heslo potvrdení"
+          label="heslo potvrzení"
           type="password"
           classNameInput="w-80"
           onChange={(value) => setPasswordCheck(value ? value : '')}
@@ -89,12 +89,12 @@ const Register = () => {
         />
         <div className="text-red-700 text-center h-5">{error}</div>
         <Button
-          text="Vytvrořiť"
+          text="Vytvořit"
           onClick={() => handleSubmit()}
           className="w-48"
           submit
           doubleCheck
-          doubleCheckSubtitle="Naozaj chcete vytvrořit obsluhu?"
+          doubleCheckSubtitle="Skutečně chcete vytvrořit obsluhu?"
         />
       </div>
       <InformationModal
@@ -102,7 +102,7 @@ const Register = () => {
         setIsOpen={setIsOpenInformationErrorModal}
         isError
         title="Chyba!"
-        subtitle="Obsluha sa nepodařila vytvořiť"
+        subtitle="Obsluha sa nepodařila vytvořit"
       />
     </>
   )

@@ -248,7 +248,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                             })
                           }
                           doubleCheck
-                          doubleCheckSubtitle="Naozaj chcete vrátit?"
+                          doubleCheckSubtitle="Skutečně chcete vrátit?"
                         />
                         <Button
                           className="w-48"
@@ -261,7 +261,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                             })
                           }}
                           doubleCheck
-                          doubleCheckSubtitle="Naozaj chcete prodloužiť?"
+                          doubleCheckSubtitle="Skutečně chcete prodloužiť?"
                         />
                         {product.status === 'AFTER_MATURITY' ? (
                           <Button
@@ -269,7 +269,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                             text="Presunout do bazaru"
                             onClick={() => setIsOpenPriceModal(true)}
                             doubleCheck
-                            doubleCheckSubtitle="Naozaj chcete presunout do bazaru?"
+                            doubleCheckSubtitle="Skutečně chcete presunout do bazaru?"
                           />
                         ) : null}
                       </div>
@@ -280,7 +280,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                       {/*  className="w-48"*/}
                       {/*  text="Tisknout"*/}
                       {/*  doubleCheck*/}
-                      {/*  doubleCheckSubtitle="Naozaj chcete tlačiť?"*/}
+                      {/*  doubleCheckSubtitle="Skutečně chcete tlačiť?"*/}
                       {/*/>*/}
                       <Button className="w-48" type="submit" text="Potvrdit" submit />
                     </div>
@@ -299,8 +299,8 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                       date_extend: dateFormatIntoDatabase(values.dateExtend)
                     })
                   }}
-                  title="Potvrdiť"
-                  subtitle="Naozaj chcete upraviť záznam?"
+                  title="potvrdit"
+                  subtitle="Skutečně chcete upraviť záznam?"
                 />
                 <InformationModal
                   isOpen={isOpenInformationSuccessModal}

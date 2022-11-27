@@ -19,7 +19,7 @@ const InputModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', handl
         <InputNumber value={input} onChange={(value) => value && setInput(value)} isDecimal />
         <div className="space-x-6">
           <Button text="Zrušiť" onClick={() => setIsOpen(false)} className="w-32" cancel />
-          <Button text="Potvrdiť" onClick={() => handleSubmit()} className="w-32" submit />
+          <Button text="potvrdit" onClick={() => handleSubmit()} className="w-32" submit />
         </div>
       </div>
     </Modal>

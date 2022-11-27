@@ -28,7 +28,7 @@ const Vytvorit: NextPage = () => {
     <AuthLayout>
       <div>
         <Head>
-          <title>Vytvořiť</title>
+          <title>Vytvořit</title>
         </Head>
 
         <main>

@@ -19,7 +19,7 @@ const SubmitModal: FC<SubmitModalProps> = ({ isOpen, setIsOpen, title = '', subt
       <div className="flex mt-4 space-x-6 justify-center">
         <Button text="Zrušiť" onClick={() => setIsOpen(false)} className="w-32" cancel />
         <Button
-          text="Potvrdiť"
+          text="potvrdit"
           onClick={() => {
             setIsOpen(false)
             handleSubmit && handleSubmit()

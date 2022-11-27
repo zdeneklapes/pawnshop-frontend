@@ -8,8 +8,8 @@ import { fetchStatistics } from '@api/service/service'
 import { StatisticsCashAmountFetchingProps } from '@components/medium/Sidebar/Sidebar.types'
 
 const navigationRoutes = [
-  { route: '/zoznam/zastavarna', name: 'Seznam' },
-  { route: '/vytvorit', name: 'Vytvořiť' },
+  { route: '/zoznam/zastavarna', name: 'Obchod' },
+  { route: '/vytvorit', name: 'Vytvořit' },
   { route: '/obsluha', name: 'Obsluha' },
   { route: '/statistika/statistika', name: 'Statistika' }
 ]
@@ -59,7 +59,7 @@ const SidebarProps = () => {
           }}
           className="flex w-full flex-col items-center py-4  text-2xl hover:cursor-pointer hover:text-gray-700"
         >
-          Odhlasit
+          Odhlásit
         </span>
       </nav>
       {cashAmountStat[0] && (

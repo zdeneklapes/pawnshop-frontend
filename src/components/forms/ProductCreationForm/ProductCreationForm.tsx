@@ -313,9 +313,9 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
                         text="Vyčistit"
                         cancel
                         doubleCheck
-                        doubleCheckSubtitle="Naozaj chcete resetovať hodnoty?"
+                        doubleCheckSubtitle="Skutečně chcete resetovať hodnoty?"
                       />
-                      <Button className="w-32" type="submit" text="Potvrdiť" submit />
+                      <Button className="w-32" type="submit" text="potvrdit" submit />
                     </div>
                   </div>
                 </div>
@@ -326,7 +326,7 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
                     handleModalSubmit(values, resetForm)
                   }}
                   title="Potvrdit"
-                  subtitle="Naozaj chcete pridať záznam?"
+                  subtitle="Skutečně chcete pridať záznam?"
                 />
                 <InformationModal
                   isOpen={isOpenInformationSuccessModal}

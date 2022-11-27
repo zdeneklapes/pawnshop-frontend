@@ -24,8 +24,8 @@ const Button: FC<ButtonProps> = ({
   cancel = false,
   submit = false,
   doubleCheck = false,
-  doubleCheckTitle = 'Potvrdiť',
-  doubleCheckSubtitle = 'Naozaj chcete potvrdiť?'
+  doubleCheckTitle = 'potvrdit',
+  doubleCheckSubtitle = 'Skutečně chcete potvrdit?'
 }) => {
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false)
   return (

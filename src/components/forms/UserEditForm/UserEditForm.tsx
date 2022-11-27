@@ -89,7 +89,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
                 autocomplete="new-password"
               />
               <Input
-                label="nové heslo potvrdení"
+                label="nové heslo potvrzení"
                 type="password"
                 classNameInput="w-64"
                 onChange={(value) => setPasswordCheck(value ? value : '')}
@@ -109,7 +109,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
 
             <Button
               className="w-48"
-              text="Potvrdiť"
+              text="potvrdit"
               doubleCheck
               doubleCheckSubtitle="Skutečně chcete změnit heslo?"
               submit
@@ -120,7 +120,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
             <div className="flex justify-center border-t border-gray-300 pt-6  w-full">
               <Button
                 className="w-64"
-                text="Zmazat obsluhu"
+                text="Smazat obsluhu"
                 doubleCheck
                 doubleCheckSubtitle="Skutečně chcete smazat obsluhu?"
                 cancel
