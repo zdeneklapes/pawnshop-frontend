@@ -1,4 +1,4 @@
-export interface DailyStatTableFetchingProps extends DailyStatFetchingProps {
+export interface DailyStatTableFetchingProps {
   date: string
   loan_create_count: number
   loan_extend_count: number

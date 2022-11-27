@@ -4,13 +4,12 @@ import { MainLayout } from '@components/big/MainLayout'
 import { Statbar } from '@components/medium/Statbar'
 import { useEffect, useState } from 'react'
 import { fetchStatistics } from '@api/service/service'
-import { DailyStatTableFetchingProps } from '@components/medium/DailyStatTable/DailyStatTable.types'
 
 import { DailyStatTable } from '@components/medium/DailyStatTable'
 import { AuthLayout } from '@components/big/AuthLayout'
 
 const Denna: NextPage = () => {
-  const [defaultStatistic, setDefaultStatistic] = useState<DailyStatTableFetchingProps[]>([])
+  const [defaultStatistic, setDefaultStatistic] = useState<any>([])
 
   useEffect(() => {
     fetchStatistics('DAILY_STATS').then((fetchedDailyStat) => {

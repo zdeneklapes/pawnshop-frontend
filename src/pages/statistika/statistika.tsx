@@ -9,7 +9,7 @@ import { StatisticsTable } from '@components/medium/StatisticsTable'
 import { AuthLayout } from '@components/big/AuthLayout'
 
 const Statistika: NextPage = () => {
-  const [defaultStatistic, setDefaultStatistic] = useState<StatistcsTableFetchingProps[]>([])
+  const [defaultStatistic, setDefaultStatistic] = useState<any>([])
 
   useEffect(() => {
     fetchStatistics('ALL').then((fetchedAllStats) => {

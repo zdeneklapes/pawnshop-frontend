@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchProducts } from '@api/service/service'
 
 const ShopStatTable = () => {
-  const [shopStats, setShopStats] = useState<{ status: string; count: string; buy: string; sell: string }[]>([])
+  const [shopStats, setShopStats] = useState<any>([])
 
   useEffect(() => {
     fetchProducts('SHOP_STATS').then((fetchedStats) => {
@@ -21,11 +21,8 @@ const ShopStatTable = () => {
       </div>
 
       <div className="flex flex-col  rounded-b mx-10 overflow-y-auto max-h-[600px]">
-        {shopStats.map((stat) => (
-          <div
-            key={stat.status}
-            className="flex flex-row space-x-1 items-center w-full p-3 hover:border-black hover:bg-gray-50  hover:cursor-pointer"
-          >
+        {shopStats.map((stat: any) => (
+          <div key={stat.status} className="flex flex-row space-x-1 items-center w-full p-3">
             <div className="w-1/5 flex justify-center truncate border-r"> {stat.status}</div>
             <div className="w-1/5 flex justify-center truncate border-r">{stat.count}</div>
             <div className="w-1/5 flex justify-center truncate border-r">{stat.buy}</div>
