@@ -6,6 +6,7 @@ import { UserContext } from '@pages/_app'
 import { getUserRole } from '@components/globals/utils'
 import { fetchStatistics } from '@api/service/service'
 import { StatisticsCashAmountFetchingProps } from '@components/medium/Sidebar/Sidebar.types'
+import { apiService } from '@api/service/service'
 
 const navigationRoutes = [
   { route: '/zoznam/zastavarna', name: 'Seznam' },
@@ -53,6 +54,18 @@ const SidebarProps = () => {
         )}
         <span
           onClick={() => {
+            try {
+              const apiAuthenticated = apiService.extend({
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+              })
+              apiAuthenticated.post(`authentication/token/logout_all/`, {
+                json: { refresh: localStorage.getItem('refreshToken') }
+              })
+            } catch (error) {
+              console.error(error)
+            }
             localStorage.setItem('accessToken', '')
             localStorage.setItem('refreshToken', '')
             router.push('/login')
