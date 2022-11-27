@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, FC } from 'react'
 import { format, addWeeks } from 'date-fns'
 import { Formik, FormikState, FormikProps } from 'formik'
 
@@ -24,8 +24,6 @@ import {
 } from '@components/forms/ProductCreationForm/ProductCreationForm.const'
 import { InformationModal } from '@components/small/InformationModal'
 import { dateFormatFromDatabase, dateFormatIntoDatabase } from '@components/globals/utils'
-
-import { FC } from 'react'
 
 interface ProductCreationFormProps {
   product?: ProductTableFetchingProps
