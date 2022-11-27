@@ -1,13 +1,12 @@
 import { FC, useState, useEffect } from 'react'
 import { dateFormatFromDatabase } from '@components/globals/utils'
-import { DailyStatTableProps } from '@components/medium/DailyStatTable/DailyStatTable.types'
 import { Input } from '@components/small/Input'
 
-const DailyStatTable: FC<DailyStatTableProps> = ({ dailystats = [] }) => {
+const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
   const [dailySta, setDailySta] = useState(dailystats)
   useEffect(() => {
     setDailySta(
-      dailystats.sort(function (a, b) {
+      dailystats.sort(function (a: any, b: any) {
         return new Date(b.date).getTime() - new Date(a.date).getTime()
       })
     )
@@ -20,7 +19,7 @@ const DailyStatTable: FC<DailyStatTableProps> = ({ dailystats = [] }) => {
       return dailystats
     } else {
       return dailystats.filter(
-        (el) => dateFormatFromDatabase(el.date, 'dd/MM/yyyy') === value || el.all_profit.toString() === value
+        (el: any) => dateFormatFromDatabase(el.date, 'dd/MM/yyyy') === value || el.all_profit.toString() === value
       )
     }
   }
@@ -40,7 +39,7 @@ const DailyStatTable: FC<DailyStatTableProps> = ({ dailystats = [] }) => {
         </div>
 
         <div className="flex flex-col divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto max-h-[700px]">
-          {dailySta.map((dailystat) => (
+          {dailySta.map((dailystat: any) => (
             <div
               key={dailystat.id}
               onClick={() => setSelectedStat(dailystat)}

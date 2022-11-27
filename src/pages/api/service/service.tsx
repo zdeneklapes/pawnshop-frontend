@@ -1,6 +1,5 @@
 import ky from 'ky'
 import { ProductTableFetchingProps } from '@components/medium/ProductTable/ProductTable.types'
-import { StatisticsTableFetchingProps } from '@components/medium/StatisticsTable/StatisticsTable.types'
 
 export const apiService = ky.create({
   timeout: false,
@@ -64,7 +63,7 @@ export const fetchUser = async (userId: number): Promise<{ email: string; role: 
   }
 }
 
-export const fetchStatistics = async (statistic: string): Promise<StatisticsTableFetchingProps[]> => {
+export const fetchStatistics = async (statistic: string): Promise<any> => {
   try {
     const apiAuthenticated = apiService.extend({
       headers: {
