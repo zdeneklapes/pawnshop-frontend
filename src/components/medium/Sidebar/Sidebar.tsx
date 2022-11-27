@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '@pages/_app'
 import { getUserRole } from '@components/globals/utils'
+import { fetchStatistics } from '@api/service/service'
 
 const navigationRoutes = [
   { route: '/zoznam/zastavarna', name: 'Seznam' },
@@ -15,6 +16,13 @@ const navigationRoutes = [
 const SidebarProps = () => {
   const { user }: any = useContext(UserContext)
   const router = useRouter()
+  const [cashAmountStat, setCashAmountStat] = useState<StatisticsCashAmountFetchingProps[]>([])
+
+  useEffect(() => {
+    fetchStatistics('CASH_AMOUNT').then((fetchedCashAmountStats) => {
+      setCashAmountStat(fetchedCashAmountStats)
+    })
+  }, [])
   return (
     <div className="flex flex-col mt-2 w-64 border-gray-300 border-r px-2">
       <div
@@ -53,6 +61,7 @@ const SidebarProps = () => {
           Odhlasit
         </span>
       </nav>
+      {cashAmountStat[0] && <div className="flex flex-col mt-auto text-3xl font-bold items-center w-full align-bottom">{cashAmountStat[0].amount} Kč</div>}
     </div>
   )
 }
