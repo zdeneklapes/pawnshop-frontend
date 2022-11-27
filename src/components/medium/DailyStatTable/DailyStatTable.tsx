@@ -113,14 +113,4 @@ const DailyStatTable: FC<DailyStatTableProps> = ({ dailystats = [] }) => {
   )
 }
 
-/*<div classNmae="flex flex-col">
-      	<ul class="list-none">
-      	  <li>Zastaveno: {selectedStat.loan_create_count}</li>
-      	  <li>za: {selectedStat.loan_income}Kc</li>
-      	  <li>Vraceno: {selectedStat.loan_return_count}</li>
-      	  <li>za:{selectedStat.loan_outcome}Kc</li>
-      	  <li>Prodlouzeno: {selectedStat.loan_extend_count}</li>
-      	  <li>Zisk: {selectedStat.loan_profit}Kc</li>
-      	</ul>
-      </div>*/
 export default DailyStatTable
