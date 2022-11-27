@@ -250,7 +250,7 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
                         <InputNumber
                           classNameInput="w-64"
                           name="buyPrice"
-                          label={isBuy ? 'Nákup' : 'Pújička'}
+                          label={isBuy ? 'Nákup' : 'Půjčka'}
                           value={values.buyPrice}
                           onChange={(value) => {
                             setFieldValue('buyPrice', value)

@@ -112,7 +112,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                 <div className="divide-y divide-gray-400">
                   <div className="flex flex-col space-y-4 pb-6">
                     <div className={STYLE_ROW_FORM}>
-                      <Input name="name" label="Jmeno" value={product.customer.full_name} disabled />
+                      <Input name="name" label="Jméno" value={product.customer.full_name} disabled />
                       <Input name="residence" label="Adresa" value={product.customer.residence} disabled />
                       <Input name="nationality" label="Národnost" value={product.customer.nationality} disabled />
                     </div>

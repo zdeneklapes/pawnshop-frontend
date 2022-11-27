@@ -35,7 +35,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
       await apiAuthenticated.delete(`authentication/user/${userToShow.id}`).then(() => router.push('/obsluha'))
     } catch (error) {
       console.error(error)
-      setErrorMessage('Zmazání obsluhy slyhalo')
+      setErrorMessage('Smazání obsluhy selhalo')
       setIsOpenInformationErrorModal(true)
     }
   }
@@ -59,11 +59,11 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
           .then(() => router.push('/obsluha'))
       } catch (error) {
         console.error(error)
-        setErrorMessage('Zmena hesla slyhala')
+        setErrorMessage('Změna hesla selhala')
         setIsOpenInformationErrorModal(true)
       }
     } else {
-      setError('Hesla sa nezhoduju nebo nemaju dlzku 8 a vice.')
+      setError('Hesla sa neshodují nebo nemají dloužku 8 a více znaků.')
     }
   }
   useEffect(() => {
@@ -111,7 +111,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
               className="w-48"
               text="Potvrdiť"
               doubleCheck
-              doubleCheckSubtitle="Naozaj chcete zmenit heslo?"
+              doubleCheckSubtitle="Skutečně chcete změnit heslo?"
               submit
               onClick={() => handlePasswordChange()}
             />
@@ -122,7 +122,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
                 className="w-64"
                 text="Zmazat obsluhu"
                 doubleCheck
-                doubleCheckSubtitle="Naozaj chcete zmazat obsluhu?"
+                doubleCheckSubtitle="Skutečně chcete smazat obsluhu?"
                 cancel
                 onClick={() => handleDeleteUser()}
               />
@@ -141,7 +141,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
         isOpen={isOpenInformationSuccessModal}
         setIsOpen={setIsOpenInformationSuccessModal}
         isSuccess
-        title="Zmena hesla uspesne prebehla."
+        title="Změna hesla úspěšně proběhla."
       />
     </>
   )

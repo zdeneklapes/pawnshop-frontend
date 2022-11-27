@@ -40,8 +40,8 @@ const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
       <div className="flex flex-row p-3 font-bold border-gray-400 rounded-t border-x border-t  mx-10 mt-10">
         <div className="w-[7%]">Smlouva</div>
         <div className="w-[7%]">Inv. číslo</div>
-        <div className="w-[13%]">Zakaznik</div>
-        <div className="w-[12%]">Rodní číslo</div>
+        <div className="w-[13%]">Zákazník</div>
+        <div className="w-[12%]">Rodné číslo</div>
         <div className="w-[14%]">Produkt</div>
         <div className="w-[7%]">Nákup</div>
         <div className="w-[7%]">Prodej</div>
