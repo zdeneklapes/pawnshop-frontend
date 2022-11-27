@@ -32,7 +32,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-128px)]">
+    <div className="flex h-[calc(100vh-128px)] flex-col">
       <Input
         className="flex justify-center"
         name="autocomplete"
@@ -40,7 +40,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
         placeholder="Vyhladávaní"
         onChange={(value) => setStat(getFilteredStatistics(value))}
       />
-      <div className="flex flex-row p-3 font-bold border-gray-400 rounded-t border-x border-t  mx-10 mt-10">
+      <div className="mx-10 mt-10 flex flex-row rounded-t border-x border-t border-gray-400  p-3 font-bold">
         <div className="w-[9%]">Stat id</div>
         <div className="w-[13%]">Kdo</div>
         <div className="w-[17%]">Datum</div>
@@ -50,7 +50,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
         <div className="w-[9%]">Profit</div>
         <div className="w-[9%]">Produkt</div>
       </div>
-      <div className="flex flex-col flex-grow divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto">
+      <div className="mx-10 mb-4 flex flex-col divide-y divide-gray-400 overflow-y-auto rounded-b border border-gray-400">
         {stat.map((statistic) => (
           <div
             key={statistic.id}
@@ -60,7 +60,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
                 query: { productid: statistic.product }
               })
             }
-            className="flex flex-row space-x-1 items-center w-full p-3 hover:border-black hover:bg-gray-50  hover:cursor-pointer"
+            className="flex w-full flex-row items-center space-x-1 p-3 hover:cursor-pointer hover:border-black  hover:bg-gray-50"
           >
             <div className="w-[9%] truncate"> {statistic.id}</div>
             <div className="w-[13%] truncate"> {statistic.username}</div>
