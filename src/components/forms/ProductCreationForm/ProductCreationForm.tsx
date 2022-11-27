@@ -28,7 +28,7 @@ import { dateFormatFromDatabase, dateFormatIntoDatabase } from '@components/glob
 import { FC } from 'react'
 
 interface ProductCreationFormProps {
-  product: ProductTableFetchingProps
+  product?: ProductTableFetchingProps
 }
 
 const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
@@ -40,18 +40,17 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [customers, setCustomers] = useState<CustomerFetchingProps[]>([])
   const [customerNames, setCustomerNames] = useState<string[]>([])
   const formikRef = useRef()
-  const [isProduct, setIsProduct] = useState(false)
 
   useEffect(() => {
-    if (product && !isProduct) {
+    if (product) {
       if (formikRef.current) {
         formikRef.current.setFieldValue('productName', product.product_name)
         formikRef.current.setFieldValue('inventoryId', product.inventory_id)
         formikRef.current.setFieldValue('buyPrice', product.buy_price)
-        setIsProduct(true)
+        // setIsProduct(true)
       }
     }
-  })
+  }, [product])
 
   useEffect(() => {
     getCustomers().then((customers) => {
