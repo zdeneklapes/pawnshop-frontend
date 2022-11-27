@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { format, addWeeks } from 'date-fns'
-import { Formik, FormikState } from 'formik'
+import { Formik, FormikState, FormikProps } from 'formik'
 
 import { Input } from '@components/small/Input'
 import { InputNumber } from '@components/small/InputNumber'
@@ -39,7 +39,7 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [policyNumber, setPolicyNumber] = useState('')
   const [customers, setCustomers] = useState<CustomerFetchingProps[]>([])
   const [customerNames, setCustomerNames] = useState<string[]>([])
-  const formikRef = useRef()
+  const formikRef = useRef<FormikProps<any>>(null)
 
   useEffect(() => {
     if (product) {
@@ -47,7 +47,6 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
         formikRef.current.setFieldValue('productName', product.product_name)
         formikRef.current.setFieldValue('inventoryId', product.inventory_id)
         formikRef.current.setFieldValue('buyPrice', product.buy_price)
-        // setIsProduct(true)
       }
     }
   }, [product])
