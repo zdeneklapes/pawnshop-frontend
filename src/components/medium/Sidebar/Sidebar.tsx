@@ -61,7 +61,11 @@ const SidebarProps = () => {
           Odhlasit
         </span>
       </nav>
-      {cashAmountStat[0] && <div className="flex flex-col mt-auto text-3xl font-bold items-center w-full align-bottom">{cashAmountStat[0].amount} Kč</div>}
+      {cashAmountStat[0] && (
+        <div className="flex flex-col mt-auto text-3xl font-bold items-center w-full align-bottom">
+          {cashAmountStat[0].amount} Kč
+        </div>
+      )}
     </div>
   )
 }

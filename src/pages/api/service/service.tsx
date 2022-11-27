@@ -77,4 +77,3 @@ export const fetchStatistics = async (statistic: string): Promise<StatisticsTabl
     return []
   }
 }
-

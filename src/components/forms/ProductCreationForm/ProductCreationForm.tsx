@@ -41,27 +41,18 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [customerNames, setCustomerNames] = useState<string[]>([])
   const formikRef = useRef()
   const [isProduct, setIsProduct] = useState(false)
-  
+
   useEffect(() => {
-     if(product && !isProduct){
-     if (formikRef.current) {
-        formikRef.current.setFieldValue(
-          "productName",
-          product.product_name
-        );
-        formikRef.current.setFieldValue(
-          "inventoryId",
-          product.inventory_id
-        );
-        formikRef.current.setFieldValue(
-          "buyPrice",
-          product.buy_price
-        );
-        setIsProduct(true);
+    if (product && !isProduct) {
+      if (formikRef.current) {
+        formikRef.current.setFieldValue('productName', product.product_name)
+        formikRef.current.setFieldValue('inventoryId', product.inventory_id)
+        formikRef.current.setFieldValue('buyPrice', product.buy_price)
+        setIsProduct(true)
       }
-      }
-   });
-  
+    }
+  })
+
   useEffect(() => {
     getCustomers().then((customers) => {
       setCustomers(customers)

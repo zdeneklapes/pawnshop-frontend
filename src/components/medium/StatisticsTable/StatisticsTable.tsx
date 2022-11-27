@@ -7,9 +7,11 @@ import Router from 'next/router'
 const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
   const [stat, setStat] = useState(statistics)
   useEffect(() => {
-    setStat(statistics.sort(function(a, b){
-    return b.id - a.id;
-}))
+    setStat(
+      statistics.sort(function (a, b) {
+        return b.id - a.id
+      })
+    )
   }, [statistics])
 
   const getFilteredStatistics = (value?: string) => {
@@ -52,10 +54,12 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
         {stat.map((statistic) => (
           <div
             key={statistic.id}
-            onClick={() => Router.push({
-          pathname: '/vytvorit',
-          query: { productid: statistic.product },
-        })}
+            onClick={() =>
+              Router.push({
+                pathname: '/vytvorit',
+                query: { productid: statistic.product }
+              })
+            }
             className="flex flex-row space-x-1 items-center w-full p-3 hover:border-black hover:bg-gray-50  hover:cursor-pointer"
           >
             <div className="w-[9%] truncate"> {statistic.id}</div>

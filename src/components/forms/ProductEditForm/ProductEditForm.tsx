@@ -276,7 +276,12 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                     )}
 
                     <div className="flex items-center justify-center space-x-16 mx-5">
-                      <Button className="w-48" text="Tisknout" doubleCheck doubleCheckSubtitle="Naozaj chcete tlačiť?" />
+                      <Button
+                        className="w-48"
+                        text="Tisknout"
+                        doubleCheck
+                        doubleCheckSubtitle="Naozaj chcete tlačiť?"
+                      />
                       <Button className="w-48" type="submit" text="Potvrdit" submit />
                     </div>
                   </div>

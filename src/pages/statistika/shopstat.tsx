@@ -6,7 +6,6 @@ import { ShopStatTable } from '@components/medium/ShopStatTable'
 import { AuthLayout } from '@components/big/AuthLayout'
 
 const Shopstat: NextPage = () => {
-
   return (
     <AuthLayout isAdminPage>
       <div>

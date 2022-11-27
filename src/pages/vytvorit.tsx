@@ -13,15 +13,15 @@ const Vytvorit: NextPage = () => {
   const router = useRouter()
   const [product, setProduct] = useState<ProductTableFetchingProps>()
   const productid = router.query.productid
-  
+
   useEffect(() => {
-  if (router.isReady && productid) {
-    const result = fetchProduct(Number(productid))
-    if (result) {
-      result.then((product) => {
-        setProduct(product)
-      })
-    }
+    if (router.isReady && productid) {
+      const result = fetchProduct(Number(productid))
+      if (result) {
+        result.then((product) => {
+          setProduct(product)
+        })
+      }
     }
   }, [router.isReady])
   return (
