@@ -114,14 +114,14 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                     <div className={STYLE_ROW_FORM}>
                       <Input name="name" label="Jmeno" value={product.customer.full_name} disabled />
                       <Input name="residence" label="Adresa" value={product.customer.residence} disabled />
-                      <Input name="nationality" label="Národnosť" value={product.customer.nationality} disabled />
+                      <Input name="nationality" label="Národnost" value={product.customer.nationality} disabled />
                     </div>
                     <div className={STYLE_ROW_FORM}>
                       <Input name="birthId" label="Rodné číslo" value={product.customer.id_birth} disabled />
                       <Input name="personalId" label="Číslo OP" value={product.customer.personal_id} disabled />
                       <Input
                         name="personalIdDate"
-                        label="Platnosť do"
+                        label="Platnost do"
                         value={dateFormatFromDatabase(product.customer.personal_id_expiration_date)}
                         disabled
                       />
@@ -129,7 +129,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                     <div className="flex items-center justify-center space-x-16">
                       <Input
                         name="sex"
-                        label="Pohlavie"
+                        label="Pohlaví"
                         value={product.customer.sex === 'M' ? 'Muž' : 'Žena'}
                         disabled
                       />
@@ -150,7 +150,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                       />
                       <InputNumber
                         name="inventoryId"
-                        label="Inventárí číslo"
+                        label="Inventární číslo"
                         onChange={(value) => setFieldValue('inventoryId', value)}
                         value={values.inventoryId}
                         errored={!!(errors.inventoryId && touched.inventoryId)}
@@ -241,7 +241,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                       <div className="flex items-center justify-center space-x-16 mx-5">
                         <Button
                           className="w-48"
-                          text="Vrátiť"
+                          text="Vrátit"
                           onClick={() =>
                             handleUpdateProduct({
                               update: 'LOAN_RETURN'
@@ -252,7 +252,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                         />
                         <Button
                           className="w-48"
-                          text="Prodloužiť"
+                          text="Prodloužit"
                           onClick={() => {
                             handleUpdateProduct({
                               update: 'LOAN_EXTEND'
@@ -276,8 +276,13 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                     )}
 
                     <div className="flex items-center justify-center space-x-16 mx-5">
-                      <Button className="w-48" text="Tlačiť" doubleCheck doubleCheckSubtitle="Naozaj chcete tlačiť?" />
-                      <Button className="w-48" type="submit" text="Potvrdiť" submit />
+                      {/*<Button*/}
+                      {/*  className="w-48"*/}
+                      {/*  text="Tisknout"*/}
+                      {/*  doubleCheck*/}
+                      {/*  doubleCheckSubtitle="Naozaj chcete tlačiť?"*/}
+                      {/*/>*/}
+                      <Button className="w-48" type="submit" text="Potvrdit" submit />
                     </div>
                   </div>
                 </div>

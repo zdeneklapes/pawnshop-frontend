@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const navigationRoutes = [
   { route: '/zoznam/zastavarna', name: 'Zastavárna' },
-  { route: '/zoznam/medzisklad', name: 'Medzisklad' },
+  { route: '/zoznam/medzisklad', name: 'Mezisklad' },
   { route: '/zoznam/bazar', name: 'Bazar' }
 ]
 

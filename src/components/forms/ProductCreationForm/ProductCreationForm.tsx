@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { format, addWeeks } from 'date-fns'
 import { Formik, FormikState } from 'formik'
 
@@ -13,6 +13,7 @@ import { apiService } from '@api/service/service'
 
 import { ProductValuesProps } from '@components/forms/ProductCreationForm/ProductCreationForm.types'
 import { CustomerFetchingProps } from '@components/globals/globals.types'
+import { ProductTableFetchingProps } from '@components/medium/ProductTable/ProductTable.types'
 import {
   SEX_OPTIONS,
   NATIONALITY_OPTIONS,
@@ -24,7 +25,13 @@ import {
 import { InformationModal } from '@components/small/InformationModal'
 import { dateFormatFromDatabase, dateFormatIntoDatabase } from '@components/globals/utils'
 
-const ProductCreationForm = () => {
+import { FC } from 'react'
+
+interface ProductCreationFormProps {
+  product?: ProductTableFetchingProps
+}
+
+const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
   const [isBuy, setIsBuy] = useState<boolean | string>(false)
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false)
   const [isOpenInformationSuccessModal, setIsOpenInformationSuccessModal] = useState(false)
@@ -32,6 +39,18 @@ const ProductCreationForm = () => {
   const [policyNumber, setPolicyNumber] = useState('')
   const [customers, setCustomers] = useState<CustomerFetchingProps[]>([])
   const [customerNames, setCustomerNames] = useState<string[]>([])
+  const formikRef = useRef()
+
+  useEffect(() => {
+    if (product) {
+      if (formikRef.current) {
+        formikRef.current.setFieldValue('productName', product.product_name)
+        formikRef.current.setFieldValue('inventoryId', product.inventory_id)
+        formikRef.current.setFieldValue('buyPrice', product.buy_price)
+        // setIsProduct(true)
+      }
+    }
+  }, [product])
 
   useEffect(() => {
     getCustomers().then((customers) => {
@@ -104,6 +123,7 @@ const ProductCreationForm = () => {
     <>
       <div className="p-8 border rounded-xl border-gray-500 shadow-2xl">
         <Formik
+          innerRef={formikRef}
           initialValues={PRODUCT_INIT_VALUES}
           validationSchema={PRODUCT_SCHEMA}
           onSubmit={() => setIsOpenSubmitModal(true)}
@@ -130,7 +150,7 @@ const ProductCreationForm = () => {
                     <div className={STYLE_ROW_FORM}>
                       <Combobox
                         options={customerNames}
-                        label="Meno"
+                        label="Jméno"
                         onChange={(value) => {
                           setFieldValue('name', value)
                           const customer = customers.find((customer: any) => customer.full_name === value)
@@ -159,7 +179,7 @@ const ProductCreationForm = () => {
                         errored={!!(errors.residence && touched.residence)}
                       />
                       <Combobox
-                        label="Národnosť"
+                        label="Národnost"
                         options={NATIONALITY_OPTIONS}
                         onChange={(value) => setFieldValue('nationality', value)}
                         value={values.nationality}
@@ -183,7 +203,7 @@ const ProductCreationForm = () => {
                       />
                       <Input
                         name="personalIdDate"
-                        label="Platnosť do"
+                        label="Platnost do"
                         onChange={(value) => setFieldValue('personalIdDate', value)}
                         value={values.personalIdDate}
                         errored={!!(errors.personalIdDate && touched.personalIdDate)}
@@ -193,7 +213,7 @@ const ProductCreationForm = () => {
                     <div className="flex items-center justify-center space-x-16">
                       <Radio
                         options={SEX_OPTIONS}
-                        label="Pohlavie"
+                        label="Pohlaví"
                         onChange={(value) => setFieldValue('sex', value)}
                         value={values.sex}
                       />
@@ -219,7 +239,7 @@ const ProductCreationForm = () => {
                       />
                       <InputNumber
                         name="inventoryId"
-                        label="Inventárí číslo"
+                        label="Inventární číslo"
                         onChange={(value) => setFieldValue('inventoryId', value)}
                         value={values.inventoryId}
                         errored={!!(errors.inventoryId && touched.inventoryId)}
@@ -291,7 +311,7 @@ const ProductCreationForm = () => {
                         onClick={() => {
                           resetForm()
                         }}
-                        text="Vyčistiť"
+                        text="Vyčistit"
                         cancel
                         doubleCheck
                         doubleCheckSubtitle="Naozaj chcete resetovať hodnoty?"
@@ -306,7 +326,7 @@ const ProductCreationForm = () => {
                   handleSubmit={() => {
                     handleModalSubmit(values, resetForm)
                   }}
-                  title="Potvrdiť"
+                  title="Potvrdit"
                   subtitle="Naozaj chcete pridať záznam?"
                 />
                 <InformationModal
