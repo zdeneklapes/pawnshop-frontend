@@ -1,10 +1,10 @@
-import {FC, useState, useEffect} from 'react'
-import {dateFormatFromDatabase} from '@components/globals/utils'
-import {StatisticsTableProps} from '@components/medium/StatisticsTable/StatisticsTable.types'
-import {Input} from '@components/small/Input'
+import { FC, useState, useEffect } from 'react'
+import { dateFormatFromDatabase } from '@components/globals/utils'
+import { StatisticsTableProps } from '@components/medium/StatisticsTable/StatisticsTable.types'
+import { Input } from '@components/small/Input'
 import Router from 'next/router'
 
-const StatisticsTable: FC<StatisticsTableProps> = ({statistics = []}) => {
+const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
   const [stat, setStat] = useState(statistics)
   useEffect(() => {
     setStat(
@@ -49,15 +49,14 @@ const StatisticsTable: FC<StatisticsTableProps> = ({statistics = []}) => {
         <div className="w-[28%]">Úkon</div>
         <div className="w-[8%]">Cena</div>
       </div>
-      <div
-        className="mx-10 mb-4 flex flex-col divide-y divide-gray-400 overflow-y-auto rounded-b border border-gray-400">
+      <div className="mx-10 mb-4 flex flex-col divide-y divide-gray-400 overflow-y-auto rounded-b border border-gray-400">
         {stat.map((statistic) => (
           <div
             key={statistic.id}
             onClick={() =>
               Router.push({
                 pathname: '/vytvorit',
-                query: {productid: statistic.product}
+                query: { productid: statistic.product }
               })
             }
             className="flex w-full flex-row items-center space-x-1 p-3 hover:cursor-pointer hover:border-black  hover:bg-gray-50"
