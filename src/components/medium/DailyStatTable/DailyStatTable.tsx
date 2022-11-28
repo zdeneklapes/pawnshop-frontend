@@ -52,14 +52,14 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
 
       <div className="flex flex-col mx-5 mt-1">
         <div className="flex flex-row font-bold text-lg">Datum: {selectedStat?.date}</div>
-        <div className="flex flex-row font-bold text-lg mt-12">Zastavarna</div>
+        <div className="flex flex-row font-bold text-lg mt-12">Zastavárna</div>
         <div className="flex flex-row">
           <div className="flex flex-col p-3 font-bold rounded-t border-r">
             <div className="h-[10%] flex justify-left my-1">Zastaveno</div>
             <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Vraceno</div>
+            <div className="h-[10%] flex justify-left my-1">Vráceno</div>
             <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Prodlouzeno</div>
+            <div className="h-[10%] flex justify-left my-1">Prodlouženo</div>
             <div className="h-[10%] flex justify-left my-1">Zisk</div>
           </div>
           <div className="flex flex-col p-3 rounded-t">
@@ -85,7 +85,7 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           <div className="flex flex-col p-3 font-bold rounded-t border-r">
             <div className="h-[10%] flex justify-left my-1">Vykoupeno</div>
             <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Prodano</div>
+            <div className="h-[10%] flex justify-left my-1">Prodáno</div>
             <div className="h-[10%] flex justify-left my-1">za</div>
             <div className="h-[10%] flex justify-left my-1">Zisk</div>
           </div>
@@ -108,9 +108,9 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
         <div className="flex flex-row font-bold text-lg">Celkem</div>
         <div className="flex flex-row">
           <div className="flex flex-col p-3 font-bold rounded-t border-r">
-            <div className="h-[10%] flex justify-left my-2">Prijmuto</div>
-            <div className="h-[10%] flex justify-left my-2">Trzba</div>
-            <div className="h-[10%] flex justify-left my-2">Vydelek</div>
+            <div className="h-[10%] flex justify-left my-2">Příjmuto</div>
+            <div className="h-[10%] flex justify-left my-2">Tržba</div>
+            <div className="h-[10%] flex justify-left my-2">Výdělek</div>
           </div>
           <div className="flex flex-col p-3 rounded-t">
             <div className="h-[10%] flex justify-left my-2">

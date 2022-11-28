@@ -22,7 +22,7 @@ const Zastavarna: NextPage = () => {
     <AuthLayout>
       <div>
         <Head>
-          <title>Zastavarna</title>
+          <title>Zastavárna</title>
         </Head>
 
         <main>
