@@ -23,7 +23,6 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
           el.username.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
           el.description.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
           dateFormatFromDatabase(el.datetime, 'dd/MM/yyyy') === value ||
-          el.price.toString() === value ||
           el.amount.toString() === value ||
           el.profit.toString() === value ||
           el.id.toString() === value
@@ -37,7 +36,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
         className="flex justify-center"
         name="autocomplete"
         classNameInput="w-96"
-        placeholder="Vyhladávaní"
+        placeholder="Vyhledávání"
         onChange={(value) => setStat(getFilteredStatistics(value))}
       />
       <div className="mx-10 mt-10 flex flex-row rounded-t border-x border-t border-gray-400  p-3 font-bold">
