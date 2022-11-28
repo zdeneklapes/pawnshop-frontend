@@ -52,7 +52,7 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
 
       <div className="flex flex-col mx-5 mt-1">
         <div className="flex flex-row font-bold text-lg">Datum: {selectedStat?.date}</div>
-        <div className="flex flex-row font-bold text-lg mt-12">Zastavarna</div>
+        <div className="flex flex-row font-bold text-lg mt-12">Zastavárna</div>
         <div className="flex flex-row">
           <div className="flex flex-col p-3 font-bold rounded-t border-r">
             <div className="h-[10%] flex justify-left my-1">Zastaveno</div>
