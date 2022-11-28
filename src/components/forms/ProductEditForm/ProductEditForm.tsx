@@ -166,7 +166,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                         <InputNumber
                           classNameInput="w-64"
                           name="buyPrice"
-                          label={product.status === 'OFFER' ? 'Nákup' : 'Pújička'}
+                          label={product.status === 'OFFER' ? 'Nákup' : 'Půjčka'}
                           value={product.buy_price.toString()}
                           disabled
                         />
