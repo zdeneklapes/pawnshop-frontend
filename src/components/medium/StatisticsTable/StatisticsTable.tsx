@@ -23,7 +23,6 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
           el.username.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
           el.description.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
           dateFormatFromDatabase(el.datetime, 'dd/MM/yyyy') === value ||
-          el.price.toString() === value ||
           el.amount.toString() === value ||
           el.profit.toString() === value ||
           el.id.toString() === value
