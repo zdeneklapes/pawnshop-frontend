@@ -13,11 +13,11 @@ const ShopStatTable = () => {
   return (
     <div>
       <div className="flex flex-row p-3 font-bold rounded-t mx-10 mt-10">
-        <div className="w-1/5 flex justify-center border-r">Kde</div>
-        <div className="w-1/5 flex justify-center border-r">Pocet</div>
-        <div className="w-1/5 flex justify-center border-r">Nakup</div>
-        <div className="w-1/5 flex justify-center">Prodej</div>
-        <div className="w-1/5 flex justify-center">Ocekavany zisk</div>
+        <div className="w-1/5 flex justify-center border-r">Typ produktu</div>
+        <div className="w-1/5 flex justify-center border-r">Počet produktu</div>
+        <div className="w-1/5 flex justify-center border-r">Nákupní cena</div>
+        <div className="w-1/5 flex justify-center">Prodejní cena</div>
+        <div className="w-1/5 flex justify-center">Očekávaný zisk</div>
       </div>
 
       <div className="flex flex-col  rounded-b mx-10 overflow-y-auto max-h-[600px]">
