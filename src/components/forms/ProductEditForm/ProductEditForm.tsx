@@ -1,4 +1,5 @@
 import { useState, FC, useContext } from 'react'
+import { useRouter } from 'next/router'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
 
@@ -49,6 +50,8 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
 
   const { user }: any = useContext(UserContext)
 
+  const router = useRouter()
+
   const PRODUCT_INIT_VALUES = {
     inventoryId: product.inventory_id.toString(),
     productName: product.product_name,
@@ -91,13 +94,14 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
     }
   }
 
-  if (product.status === 'INACTIVE_OFFER' || product.status === 'INACTIVE_LOAN') {
-    return (
-      <div className="text-xl">
-        Produkt {product.status === 'INACTIVE_OFFER' ? 'z bazaru' : 'zo zastavárny'} je neaktivní.
-      </div>
-    )
+  if (product.status === 'INACTIVE_OFFER') {
+    router.push('/zoznam/bazar')
+    return <></>
+  } else if (product.status === 'INACTIVE_LOAN') {
+    router.push('/zoznam/zastavarna')
+    return <></>
   }
+
   return (
     <div className="flex space-x-6 items-center">
       <div className="p-8 border rounded-xl border-gray-500 shadow-2xl">
