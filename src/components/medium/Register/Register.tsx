@@ -63,7 +63,7 @@ const Register = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center border h-[450px] w-[500px] rounded-xl border-gray-500 shadow-2xl space-y-4 px-20">
-        <div className="text-2xl font-medium">Přidaní novej obsluhy</div>
+        <div className="text-2xl font-medium">Přidání nové obsluhy</div>
         <Input
           autocomplete="new-password"
           label="email"

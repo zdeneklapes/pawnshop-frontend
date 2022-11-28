@@ -5,9 +5,9 @@ import { useContext } from 'react'
 import { UserContext } from '@pages/_app'
 
 const navigationRoutes = [
-  { route: '/statistika/statistika', name: 'Vsechny' },
-  { route: '/statistika/denna', name: 'Denne' },
-  { route: '/statistika/shopstat', name: 'Obchod' }
+  { route: '/statistika/statistika', name: 'Všechny' },
+  { route: '/statistika/denna', name: 'Denně' },
+  { route: '/statistika/shopstat', name: 'Stav obchodu' }
 ]
 
 const Statbar = () => {
