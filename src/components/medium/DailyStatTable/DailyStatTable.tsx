@@ -1,8 +1,8 @@
-import {FC, useState, useEffect} from 'react'
-import {dateFormatFromDatabase} from '@components/globals/utils'
-import {Input} from '@components/small/Input'
+import { FC, useState, useEffect } from 'react'
+import { dateFormatFromDatabase } from '@components/globals/utils'
+import { Input } from '@components/small/Input'
 
-const DailyStatTable: FC<any> = ({dailystats = []}) => {
+const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
   const [dailySta, setDailySta] = useState(dailystats)
   useEffect(() => {
     setDailySta(
@@ -37,8 +37,7 @@ const DailyStatTable: FC<any> = ({dailystats = []}) => {
           <div className="w-[100%]">Datum</div>
         </div>
 
-        <div
-          className="flex flex-col divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto max-h-[700px]">
+        <div className="flex flex-col divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto max-h-[700px]">
           {dailySta.map((dailystat: any) => (
             <div
               key={dailystat.id}
@@ -65,12 +64,13 @@ const DailyStatTable: FC<any> = ({dailystats = []}) => {
           <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.loan_extend_count} Ks</div>
 
           <div className="justify-left px-3 py-1 font-bold border-r">Výdaje</div>
-          <div className="justify-left px-3 py-1">{selectedStat?.loan_outcome ? selectedStat.loan_outcome : '0'} Kč
+          <div className="justify-left px-3 py-1">
+            {selectedStat?.loan_outcome ? selectedStat.loan_outcome : '0'} Kč
           </div>
 
           <div className="justify-left px-3 py-1 font-bold border-r border-b-4">Tržba</div>
-          <div
-            className="justify-left px-3 py-1 border-b-4">{selectedStat?.loan_income ? selectedStat.loan_income : '0'} Kč
+          <div className="justify-left px-3 py-1 border-b-4">
+            {selectedStat?.loan_income ? selectedStat.loan_income : '0'} Kč
           </div>
 
           <div className="justify-left px-3 py-1 font-bold border-r">Zisk</div>
