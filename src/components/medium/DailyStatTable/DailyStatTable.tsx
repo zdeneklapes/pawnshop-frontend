@@ -1,8 +1,8 @@
-import { FC, useState, useEffect } from 'react'
-import { dateFormatFromDatabase } from '@components/globals/utils'
-import { Input } from '@components/small/Input'
+import {FC, useState, useEffect} from 'react'
+import {dateFormatFromDatabase} from '@components/globals/utils'
+import {Input} from '@components/small/Input'
 
-const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
+const DailyStatTable: FC<any> = ({dailystats = []}) => {
   const [dailySta, setDailySta] = useState(dailystats)
   useEffect(() => {
     setDailySta(
@@ -37,7 +37,8 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           <div className="w-[100%]">Datum</div>
         </div>
 
-        <div className="flex flex-col divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto max-h-[700px]">
+        <div
+          className="flex flex-col divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto max-h-[700px]">
           {dailySta.map((dailystat: any) => (
             <div
               key={dailystat.id}
@@ -56,19 +57,23 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
         <div className="grid grid-cols-2 pt-3">
           <div className="justify-left px-3 py-1 font-bold border-r border-b">Zastaveno</div>
           <div className="justify-left px-3 py-1 border-b">{selectedStat?.loan_create_count} Ks</div>
-          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">za</div>
-          <div className="justify-left px-3 py-1 border-b-4">
-            {selectedStat?.loan_income ? selectedStat.loan_income : '0'} Kč
-          </div>
+
           <div className="justify-left px-3 py-1 font-bold border-r border-b">Vraceno</div>
           <div className="justify-left px-3 py-1 border-b">{selectedStat?.loan_return_count} Ks</div>
-          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">za</div>
-          <div className="justify-left px-3 py-1 border-b-4">
-            {selectedStat?.loan_outcome ? selectedStat.loan_outcome : '0'} Kč
+
+          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">Prodlouzeno</div>
+          <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.loan_extend_count} Ks</div>
+
+          <div className="justify-left px-3 py-1 font-bold border-r">Výdaje</div>
+          <div className="justify-left px-3 py-1">{selectedStat?.loan_outcome ? selectedStat.loan_outcome : '0'} Kč
           </div>
-          <div className="justify-left px-3 py-1 font-bold border-r border-b">Prodlouzeno</div>
-          <div className="justify-left px-3 py-1 border-b">{selectedStat?.loan_extend_count} Ks</div>
-          <div className="justify-left px-3 py-1 font-bold border-r">za</div>
+
+          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">Tržba</div>
+          <div
+            className="justify-left px-3 py-1 border-b-4">{selectedStat?.loan_income ? selectedStat.loan_income : '0'} Kč
+          </div>
+
+          <div className="justify-left px-3 py-1 font-bold border-r">Zisk</div>
           <div className="justify-left px-3 py-1">{selectedStat?.loan_profit ? selectedStat.loan_profit : '0'} Kč</div>
         </div>
       </div>
@@ -78,16 +83,20 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
         <div className="grid grid-cols-2 pt-3">
           <div className="justify-left px-3 py-1 border-r border-b font-bold">Vykoupeno</div>
           <div className="justify-left px-3 py-1 border-b">{selectedStat?.offer_create_count} Ks</div>
-          <div className="justify-left px-3 py-1 border-r border-b-4 font-bold">za</div>
-          <div className="justify-left px-3 py-1 border-b-4">
+
+          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">Prodano</div>
+          <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.offer_sell_count} Ks</div>
+
+          <div className="justify-left px-3 py-1 border-r border-b font-bold">Tržba</div>
+          <div className="justify-left px-3 py-1 border-b">
             {selectedStat?.offer_income ? selectedStat.offer_income : '0'} Kč
           </div>
-          <div className="justify-left px-3 py-1 font-bold border-r border-b">Prodano</div>
-          <div className="justify-left px-3 py-1 border-b">{selectedStat?.offer_sell_count} Ks</div>
-          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">za</div>
+
+          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">Výdaje</div>
           <div className="justify-left px-3 py-1 border-b-4">
             {selectedStat?.offer_outcome ? selectedStat.offer_outcome : '0'} Kč
           </div>
+
           <div className="justify-left px-3 py-1 font-bold border-r">Zisk</div>
           <div className="justify-left px-3 py-1">
             {selectedStat?.offer_profit ? selectedStat.offer_profit : '0'} Kč
@@ -102,8 +111,8 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           <div className="justify-left px-3 py-1 border-b">
             {selectedStat?.all_income ? selectedStat.all_income : '0'} Kč
           </div>
-          <div className="justify-left px-3 py-1 font-bold border-r border-b">Trzba</div>
-          <div className="justify-left px-3 py-1 border-b">
+          <div className="justify-left px-3 py-1 font-bold border-r border-b-4">Trzba</div>
+          <div className="justify-left px-3 py-1 border-b-4">
             {selectedStat?.all_outcome ? selectedStat.all_outcome : '0'} Kč
           </div>
           <div className="justify-left px-3 py-1 font-bold border-r">Vydelek</div>
