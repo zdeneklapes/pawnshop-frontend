@@ -32,7 +32,7 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           className="flex justify-center"
           name="autocomplete"
           classNameInput="w-96"
-          placeholder="Vyhladávaní"
+          placeholder="Vyhledávání"
           onChange={(value) => setDailySta(getFilteredDailyStats(value))}
         />
         <div className="flex flex-row p-3 font-bold border-gray-400 rounded-t border-x border-t  mx-10 mt-10">

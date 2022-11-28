@@ -58,7 +58,7 @@ const Login: NextPage = () => {
 
         <main className="flex h-screen items-center justify-center bg-gray-200 ">
           <div className="flex flex-col items-center justify-center space-y-4 rounded-xl border border-gray-500 p-8 px-24 shadow-2xl">
-            <div className="text-2xl font-medium">Přihlásení</div>
+            <div className="text-2xl font-medium">Přihlášení</div>
             <Input
               label="email"
               classNameInput="w-64"

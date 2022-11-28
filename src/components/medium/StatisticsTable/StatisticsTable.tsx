@@ -36,7 +36,7 @@ const StatisticsTable: FC<StatisticsTableProps> = ({ statistics = [] }) => {
         className="flex justify-center"
         name="autocomplete"
         classNameInput="w-96"
-        placeholder="Vyhladávaní"
+        placeholder="Vyhledávání"
         onChange={(value) => setStat(getFilteredStatistics(value))}
       />
       <div className="mx-10 mt-10 flex flex-row rounded-t border-x border-t border-gray-400  p-3 font-bold">
