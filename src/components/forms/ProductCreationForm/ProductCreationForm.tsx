@@ -313,7 +313,7 @@ const ProductCreationForm: FC<ProductCreationFormProps> = ({ product }) => {
                         doubleCheck
                         doubleCheckSubtitle="Skutečně chcete resetovať hodnoty?"
                       />
-                      <Button className="w-32" type="submit" text="potvrdit" submit />
+                      <Button className="w-32" type="submit" text="Potvrdit" submit />
                     </div>
                   </div>
                 </div>

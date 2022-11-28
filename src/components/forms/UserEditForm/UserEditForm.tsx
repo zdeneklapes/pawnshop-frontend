@@ -78,7 +78,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
             <div className="text-xl">{getUserRole(userToShow.role)}</div>
           </div>
           <div className="flex flex-col items-center space-y-4 ">
-            <div className="text-xl font-medium">Zmena hesla</div>
+            <div className="text-xl font-medium">Změna hesla</div>
             <div className="flex space-x-6">
               <Input
                 label="nové heslo"
@@ -109,7 +109,7 @@ const UserEditForm: FC<UserEditFormProps> = ({ userToShow }) => {
 
             <Button
               className="w-48"
-              text="potvrdit"
+              text="Potvrdit"
               doubleCheck
               doubleCheckSubtitle="Skutečně chcete změnit heslo?"
               submit

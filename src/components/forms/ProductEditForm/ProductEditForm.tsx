@@ -303,7 +303,7 @@ const ProductEditForm: FC<ProductCreationFormProps> = ({ product }) => {
                       date_extend: dateFormatIntoDatabase(values.dateExtend)
                     })
                   }}
-                  title="potvrdit"
+                  title="Potvrdit"
                   subtitle="Skutečně chcete upraviť záznam?"
                 />
                 <InformationModal

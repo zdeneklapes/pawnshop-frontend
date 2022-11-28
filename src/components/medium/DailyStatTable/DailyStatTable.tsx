@@ -65,11 +65,11 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           </div>
           <div className="flex flex-col p-3 rounded-t">
             <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_create_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_income} Kc</div>
+            <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_income} Kč</div>
             <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_return_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_outcome} Kc</div>
+            <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_outcome} Kč</div>
             <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_extend_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_profit} Kc</div>
+            <div className="h-[10%] flex justify-left my-1">{selectedStat.loan_profit} Kč</div>
           </div>
         </div>
       </div>
@@ -80,16 +80,16 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           <div className="flex flex-col p-3 font-bold rounded-t border-r">
             <div className="h-[10%] flex justify-left my-1">Vykoupeno</div>
             <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Prodano</div>
+            <div className="h-[10%] flex justify-left my-1">Prodáno</div>
             <div className="h-[10%] flex justify-left my-1">za</div>
             <div className="h-[10%] flex justify-left my-1">Zisk</div>
           </div>
           <div className="flex flex-col p-3 rounded-t">
             <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_create_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_income} Kc</div>
+            <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_income} Kč</div>
             <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_sell_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_outcome} Kc</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_profit} Kc</div>
+            <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_outcome} Kč</div>
+            <div className="h-[10%] flex justify-left my-1">{selectedStat.offer_profit} Kč</div>
           </div>
         </div>
       </div>
@@ -97,14 +97,14 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
         <div className="flex flex-row font-bold text-lg">Celkem</div>
         <div className="flex flex-row">
           <div className="flex flex-col p-3 font-bold rounded-t border-r">
-            <div className="h-[10%] flex justify-left my-2">Prijmuto</div>
-            <div className="h-[10%] flex justify-left my-2">Trzba</div>
-            <div className="h-[10%] flex justify-left my-2">Vydelek</div>
+            <div className="h-[10%] flex justify-left my-2">Příjmuto</div>
+            <div className="h-[10%] flex justify-left my-2">Tržba</div>
+            <div className="h-[10%] flex justify-left my-2">Výdělek</div>
           </div>
           <div className="flex flex-col p-3 rounded-t">
-            <div className="h-[10%] flex justify-left my-2">{selectedStat.all_income} Kc</div>
-            <div className="h-[10%] flex justify-left my-2">{selectedStat.all_outcome} Kc</div>
-            <div className="h-[10%] flex justify-left my-2">{selectedStat.all_profit} Kc</div>
+            <div className="h-[10%] flex justify-left my-2">{selectedStat.all_income} Kč</div>
+            <div className="h-[10%] flex justify-left my-2">{selectedStat.all_outcome} Kč</div>
+            <div className="h-[10%] flex justify-left my-2">{selectedStat.all_profit} Kč</div>
           </div>
         </div>
       </div>

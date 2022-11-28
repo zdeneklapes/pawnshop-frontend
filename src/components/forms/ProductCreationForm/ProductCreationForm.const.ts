@@ -6,7 +6,7 @@ export const SEX_OPTIONS = [
   { value: 'F', label: 'Žena' }
 ]
 export const FORM_TYPE = [
-  { value: false, label: 'Zastavarna' },
+  { value: false, label: 'Zastavárna' },
   { value: true, label: 'Bazar' }
 ]
 export const NATIONALITY_OPTIONS = ['ČR', 'SK']
