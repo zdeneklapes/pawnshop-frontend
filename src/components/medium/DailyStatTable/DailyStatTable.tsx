@@ -19,7 +19,7 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
       return dailystats
     } else {
       return dailystats.filter(
-        (el: any) => dateFormatFromDatabase(el.date, 'dd/MM/yyyy') === value || el.all_profit.toString() === value
+        (el: any) => dateFormatFromDatabase(el.date, 'dd/MM/yyyy') === value
       )
     }
   }
