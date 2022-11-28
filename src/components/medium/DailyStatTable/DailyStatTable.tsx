@@ -51,62 +51,51 @@ const DailyStatTable: FC<any> = ({ dailystats = [] }) => {
           ))}
         </div>
       </div>
-
+      
       <div className="flex flex-col mx-5 mt-1">
         <div className="flex flex-row font-bold text-lg">Datum: {selectedStat?.date}</div>
         <div className="flex flex-row font-bold text-lg mt-12">Zastavarna</div>
-        <div className="flex flex-row">
-          <div className="flex flex-col p-3 font-bold rounded-t border-r">
-            <div className="h-[10%] flex justify-left my-1">Zastaveno</div>
-            <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Vraceno</div>
-            <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Prodlouzeno</div>
-            <div className="h-[10%] flex justify-left my-1">Zisk</div>
-          </div>
-          <div className="flex flex-col p-3 rounded-t">
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.loan_create_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.loan_income ? selectedStat.loan_income : "0"} Kč</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.loan_return_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.loan_outcome ? selectedStat.loan_outcome : "0"} Kč</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.loan_extend_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.loan_profit ? selectedStat.loan_profit : "0"} Kč</div>
-          </div>
+        <div className="grid grid-cols-2 pt-3">
+            <div className="justify-left px-3 py-1 font-bold border-r border-b">Zastaveno</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.loan_create_count} Ks</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b-4">za</div>
+            <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.loan_income ? selectedStat.loan_income : "0"} Kč</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b">Vraceno</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.loan_return_count} Ks</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b-4">za</div>
+            <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.loan_outcome ? selectedStat.loan_outcome : "0"} Kč</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b">Prodlouzeno</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.loan_extend_count} Ks</div>
+            <div className="justify-left px-3 py-1 font-bold border-r">za</div>
+            <div className="justify-left px-3 py-1">{selectedStat?.loan_profit ? selectedStat.loan_profit : "0"} Kč</div>
         </div>
       </div>
 
       <div className="flex flex-col mx-5 mt-20">
         <div className="flex flex-row font-bold text-lg">Bazar</div>
-        <div className="flex flex-row">
-          <div className="flex flex-col p-3 font-bold rounded-t border-r">
-            <div className="h-[10%] flex justify-left my-1">Vykoupeno</div>
-            <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Prodano</div>
-            <div className="h-[10%] flex justify-left my-1">za</div>
-            <div className="h-[10%] flex justify-left my-1">Zisk</div>
-          </div>
-          <div className="flex flex-col p-3 rounded-t">
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.offer_create_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.offer_income ? selectedStat.offer_income : "0"} Kč</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.offer_sell_count}</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.offer_outcome ? selectedStat.offer_outcome : "0"} Kč</div>
-            <div className="h-[10%] flex justify-left my-1">{selectedStat?.offer_profit ? selectedStat.offer_profit : "0"} Kč</div>
-          </div>
+        <div className="grid grid-cols-2 pt-3">
+            <div className="justify-left px-3 py-1 border-r border-b font-bold">Vykoupeno</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.offer_create_count} Ks</div>
+            <div className="justify-left px-3 py-1 border-r border-b-4 font-bold">za</div>
+            <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.offer_income ? selectedStat.offer_income : "0"} Kč</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b">Prodano</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.offer_sell_count} Ks</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b-4">za</div>
+            <div className="justify-left px-3 py-1 border-b-4">{selectedStat?.offer_outcome ? selectedStat.offer_outcome : "0"} Kč</div>
+            <div className="justify-left px-3 py-1 font-bold border-r">Zisk</div>
+            <div className="justify-left px-3 py-1">{selectedStat?.offer_profit ? selectedStat.offer_profit : "0"} Kč</div>
         </div>
       </div>
+      
       <div className="flex flex-col mx-5 mt-20">
-        <div className="flex flex-row font-bold text-lg">Celkem</div>
-        <div className="flex flex-row">
-          <div className="flex flex-col p-3 font-bold rounded-t border-r">
-            <div className="h-[10%] flex justify-left my-2">Prijmuto</div>
-            <div className="h-[10%] flex justify-left my-2">Trzba</div>
-            <div className="h-[10%] flex justify-left my-2">Vydelek</div>
-          </div>
-          <div className="flex flex-col p-3 rounded-t">
-            <div className="h-[10%] flex justify-left my-2">{selectedStat?.all_income ? selectedStat.all_income : "0"} Kč</div>
-            <div className="h-[10%] flex justify-left my-2">{selectedStat?.all_outcome ? selectedStat.all_outcome : "0"} Kč</div>
-            <div className="h-[10%] flex justify-left my-2">{selectedStat?.all_profit ? selectedStat.all_profit : "0"} Kč</div>
-          </div>
+        <div className="flex flex-row font-bold text-lg">Celkom</div>
+        <div className="grid grid-cols-2 pt-3">
+            <div className="justify-left px-3 py-1 font-bold border-r border-b">Prijmuto</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.all_income ? selectedStat.all_income : "0"} Kč</div>
+            <div className="justify-left px-3 py-1 font-bold border-r border-b">Trzba</div>
+            <div className="justify-left px-3 py-1 border-b">{selectedStat?.all_outcome ? selectedStat.all_outcome : "0"} Kč</div>
+            <div className="justify-left px-3 py-1 font-bold border-r">Vydelek</div>
+            <div className="justify-left px-3 py-1">{selectedStat?.all_profit ? selectedStat.all_profit : "0"} Kč</div>
         </div>
       </div>
     </div>
