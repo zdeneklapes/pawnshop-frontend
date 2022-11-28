@@ -6,7 +6,8 @@ export const dateFormatFromDatabase = (date: string, formatDate = 'dd/MM/yyyy'):
 }
 
 export const dateFormatIntoDatabase = (date: string, formatDate = 'yyyy-MM-dd'): string => {
-  return format(new Date(date), formatDate)
+  const newDate = date.split('/')
+  return format(new Date(Number(newDate[2]), Number(newDate[1]), Number(newDate[0])), formatDate)
 }
 
 export const getUserInformation = (accessToken: string | null): { id: string; email: string; role: string } => {
