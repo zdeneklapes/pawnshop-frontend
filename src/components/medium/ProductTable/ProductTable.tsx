@@ -29,7 +29,7 @@ const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
   }
 
   return (
-    <div>
+    <div className="flex h-[calc(100vh-128px)] flex-col">
       <Input
         className="flex justify-center"
         name="autocomplete"
@@ -49,7 +49,7 @@ const ProductTable: FC<ProductTableProps> = ({ products = [] }) => {
         <div className="w-[13%]">Prodlouženo</div>
         <div className="w-[10%]">Splatné do</div>
       </div>
-      <div className="flex flex-col divide-gray-400 divide-y border-gray-400 border  rounded-b mx-10 overflow-y-auto max-h-[700px]">
+      <div className="mx-10 mb-4 flex flex-col divide-y divide-gray-400 overflow-y-auto rounded-b border border-gray-400">
         {pro.map((product) => (
           <div
             key={product.id}
