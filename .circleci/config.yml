@@ -18,8 +18,7 @@ jobs:
       - run:
           name:
           command: |
-            sudo pip3 install pre-commit
-            pre-commit run --all-files
+            npm run lint
 
   deploy-dev:
     machine: true
