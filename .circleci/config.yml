@@ -50,7 +50,7 @@ jobs:
             vercel deploy --prebuilt --prod --token=${VERCEL_TOKEN}
 
 workflows:
-  deploy:
+  lint-and-deploy:
     jobs:
       - lint
       - deploy-dev:
