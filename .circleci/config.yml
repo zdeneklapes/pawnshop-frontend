@@ -3,10 +3,10 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 
-executors:
-  my-executor:
-    docker:
-      - image: zlapik/pawnshop-backend_backend
+#executors:
+#  my-executor:
+#    docker:
+#      - image: zlapik/pawnshop-backend_backend
 
 jobs:
   lint:
@@ -49,7 +49,7 @@ jobs:
             vercel deploy --prebuilt --prod --token=${VERCEL_TOKEN}
 
 workflows:
-  lint-and-deploy:
+  lint-deploy:
     jobs:
       - lint
       - deploy-dev:
