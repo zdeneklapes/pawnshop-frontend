@@ -14,15 +14,17 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./",
-    "typeRoots": ["node_modules/@types", "src/typings"],
+//    "baseUrl": "./",
+    "typeRoots": ["node_modules/@types"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@api/*": ["src/pages/api/*"],
-      "@styles/*": ["src/styles/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
