@@ -1,0 +1,19 @@
+version: '3.6'
+
+# How to run Cron: https://stackoverflow.com/questions/69802579/how-to-make-django-crontab-execute-commands-in-docker-container:
+# Cron in Heroku: https://stackoverflow.com/questions/43061967/running-an-docker-image-with-cron:
+
+services:
+  frontend:
+    image: pawnshop/frontend-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+    env_file: .env.development

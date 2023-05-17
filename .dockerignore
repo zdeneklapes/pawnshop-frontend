@@ -1,0 +1,11 @@
+.circleci/
+src2/
+.next/
+node_modules/
+
+Dockerfile
+.gitignore
+.editorconfig
+.env.development
+.env.production
+

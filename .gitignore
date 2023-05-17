@@ -6,6 +6,7 @@
 *.msp
 *.vercel
 *.log
+out/
 
 # Windows shortcuts
 *.lnk
