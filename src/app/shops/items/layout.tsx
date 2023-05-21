@@ -1,4 +1,4 @@
-// import ItemTemplate from "@/app/item/template";
+// import ItemTemplate from "@/app/items/template";
 
 export default function DashboardLayout({children,}: { children: React.ReactNode; }) {
   return (

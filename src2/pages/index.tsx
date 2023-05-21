@@ -1,8 +1,8 @@
-import type { NextPage } from 'next'
+import type {NextPage} from 'next'
 import Head from 'next/head'
 
-import { MainLayout } from '@components/big/MainLayout'
-import { AuthLayout } from '@components/big/AuthLayout'
+import {MainLayout} from '@components/big/MainLayout'
+import {AuthLayout} from '@components/big/AuthLayout'
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
           <title>Index</title>
         </Head>
         <main>
-          <MainLayout />
+          <MainLayout/>
         </main>
       </div>
     </AuthLayout>
