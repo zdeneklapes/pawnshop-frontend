@@ -13,9 +13,14 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
   return (
     <html lang="en">
     <Head>
+      {/*<title>asasa</title>*/}
       <title>{metadata.title}</title>
     </Head>
-    <body className={inter.className}>{children}aa</body>
+    <body className={inter.className}>
+    layout_Starts
+    {children}
+    layout_Ends
+    </body>
     </html>
   )
 }

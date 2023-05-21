@@ -1,7 +1,9 @@
 export default function Template({children,}: { children: React.ReactNode; }) {
   return (
-    <section>
-      {children}bb
-    </section>
+    <div>
+      template_Starts
+      {children}
+      template_Ends
+    </div>
   );
 }
