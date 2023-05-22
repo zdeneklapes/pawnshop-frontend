@@ -1,5 +1,5 @@
-import '@styles/globals.css'
-import Nav from '@components/Nav'
+import '@/styles/globals.css'
+import Nav from '@/components/Nav'
 import {Inter} from 'next/font/google'
 import Head from 'next/head'
 
