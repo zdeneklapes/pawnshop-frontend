@@ -18,7 +18,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    //    "baseUrl": "./",
+    //        "baseUrl": "./",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -28,12 +28,8 @@
       }
     ],
     "paths": {
-      //      "@/*": ["./src/*"],
-      "@styles/*": [
-        "./src/styles/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
+      "@/*": [
+        "./src/*"
       ]
     }
   },
