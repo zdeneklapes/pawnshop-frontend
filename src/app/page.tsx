@@ -1,13 +1,16 @@
-// import Image from 'next/image'
-
+function foo(): string {
+  return "foo"
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      page_Starts
-      <h1>Hello, Home Page</h1>
-      page_Ends
-    </div>
+    <section className="w-full flex-center">
+      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        page_Start
+        <h1>Hello, Home Page ({foo()})</h1>
+        page_Ends
+      </div>
+    </section>
   )
   // return (
   //   <main className="flex min-h-screen flex-col items-center justify-between p-24">

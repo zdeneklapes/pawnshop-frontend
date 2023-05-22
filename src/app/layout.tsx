@@ -1,4 +1,5 @@
-import './globals.css'
+import '@styles/globals.css'
+import Nav from '@components/nav'
 import {Inter} from 'next/font/google'
 import Head from 'next/head'
 
@@ -17,9 +18,12 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
       <title>{metadata.title}</title>
     </Head>
     <body className={inter.className}>
-    layout_Starts
-    {children}
-    layout_Ends
+    <main>
+      <Nav/>
+      layout_Starts
+      {children}
+      layout_Ends
+    </main>
     </body>
     </html>
   )
