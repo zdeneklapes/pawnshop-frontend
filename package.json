@@ -2,13 +2,16 @@
     "name": "pawnshop-frontend",
     "version": "0.1.0",
     "private": true,
+    "bugs": {
+        "url": "https://github.com/zdeneklapes/pawnshop-frontend/issues",
+        "email": "lapes.zdenek@gmail.com"
+    },
     "scripts": {
         "dev-client": "next dev",
         "dev-server": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint",
-        "pre-commit": "next lint"
+        "lint": "next lint"
     },
     "dependencies": {
         "@headlessui/react": "^1.7.2",

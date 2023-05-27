@@ -15,24 +15,6 @@ repos:
       - id: check-useless-excludes
       - id: identity
 
-  ##########################################################################################
-  # Local hooks
-  ##########################################################################################
-  - repo: local
-    hooks:
-      - id: next-lint
-        name: Next lint
-        entry: yarn run next lint
-        language: system
-
-
-  ##########################################################################################
-  # JavaScript and TypeScript hooks
-  ##########################################################################################
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: 'v8.41.0'  # Use the sha / tag you want to point at
-    hooks:
-      - id: eslint
 
   ##########################################################################################
   # Pipeline hooks

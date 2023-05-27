@@ -3,11 +3,6 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 
-#executors:
-#  my-executor:
-#    docker:
-#      - image: zlapik/pawnshop-backend_backend
-
 jobs:
   lint:
     machine: true
@@ -25,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and Deploy to Vercel DEV
+          name: Build and Deploy to Vercel dev
           command: |
             set -x
             npm install --global vercel@latest
@@ -39,7 +34,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and Deploy to Vercel PROD
+          name: Build and Deploy to Vercel prod
           command: |
             set -x
             npm install --global vercel@latest
