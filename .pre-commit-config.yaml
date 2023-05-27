@@ -83,18 +83,6 @@ repos:
     hooks:
       - id: markdownlint
         files: \.(md|mdown|markdown)$
-  #        files: ^README.md$
-
-  ##########################################################################################
-  # EditorConfig
-  ##########################################################################################
-  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 2.6.1
-    hooks:
-      - id: editorconfig-checker
-        language: python
-        files: ^(ai_investing/|docs/)
-        exclude: (enplain.bst|project_info.tex|fitthesis.cls|\.py|\.ipynb|\.bib)$
 
   ##########################################################################################
   # Git
