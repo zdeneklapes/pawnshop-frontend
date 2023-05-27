@@ -11,7 +11,7 @@
     "dev-server": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && prettier -w src"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.2",
