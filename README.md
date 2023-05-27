@@ -12,7 +12,7 @@ yarn
 
 All commands are run from the **pawnshop-frontend/** directory.
 
-#### Local:
+#### Local
 
 ````
 ```shell
