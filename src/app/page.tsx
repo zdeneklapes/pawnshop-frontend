@@ -1,10 +1,6 @@
 import MainLayout from "@/components/Layouts/MainLayout";
 
-function foo(): string {
-  return "foo"
-}
-
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <MainLayout/>
   )

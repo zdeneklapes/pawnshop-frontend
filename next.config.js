@@ -6,6 +6,9 @@ const nextConfig = {
   i18n: {
     locales: ['en-US', 'cs-CZ', 'sk-SK'],
     defaultLocale: 'en-US',
+  },
+  eslint: {
+    dirs: ['src'],
   }
 }
 

@@ -4,7 +4,11 @@ module.exports = {
       version: 'detect'
     }
   },
-  ignorePatterns: ['*.js'],
+  ignorePatterns: [
+    '*.js',
+    'src/components/ui/*.tsx',
+    // 'src/components/ui/*.ts'
+  ],
   env: {
     browser: true,
     es2021: true,
@@ -12,9 +16,10 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'next',
+    'prettier',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
     'plugin:@next/next/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -46,7 +51,7 @@ module.exports = {
     //   }
     // ],
     'no-console': [
-      1,
+      "warn", // 0 = off, 1 = warn, 2 = error
       {
         allow: ['warn', 'error']
       }

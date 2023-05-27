@@ -1,0 +1,134 @@
+#default_language_version:
+#  python: python3.9
+default_stages: [ commit ]
+#files: '^(src/)|(.github/workflows/.*.yml)|(.vim/)$'
+exclude: '(node_modules/)|(.next/)|(public/)'
+fail_fast: false
+minimum_pre_commit_version: '0'
+repos:
+  ##########################################################################################
+  # Meta hooks
+  ##########################################################################################
+  - repo: meta
+    hooks:
+      #      - id: check-hooks-apply
+      - id: check-useless-excludes
+      - id: identity
+
+  ##########################################################################################
+  # Local hooks
+  ##########################################################################################
+  - repo: local
+    hooks:
+      - id: next-lint
+        name: Next lint
+        entry: yarn run next lint
+        language: system
+
+
+  ##########################################################################################
+  # JavaScript and TypeScript hooks
+  ##########################################################################################
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: 'v8.41.0'  # Use the sha / tag you want to point at
+    hooks:
+      - id: eslint
+
+  ##########################################################################################
+  # Pipeline hooks
+  ##########################################################################################
+  - repo: https://github.com/zahorniak/pre-commit-circleci.git
+    rev: v0.6 # Ensure this is the latest tag, comparing to the Releases tab
+    hooks:
+      - id: circleci_validate
+        files: ^(.circleci/.*.yml)$
+
+  #    -   repo: https://github.com/python-jsonschema/check-jsonschema
+  #        rev: 0.21.0
+  #        hooks:
+  #            -   id: check-github-workflows
+  #                files: ^(.github/workflows/.*.yml)$
+
+
+  ##########################################################################################
+  # Standard hooks
+  ##########################################################################################
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-added-large-files
+        types: [ file ]
+        args: [ '--maxkb=1000' ]
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-byte-order-marker
+      - id: check-builtin-literals
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-json
+        files: \.json$ # TODO: fixme
+      - id: pretty-format-json
+        files: \.json$ # TODO: fixme
+        args:
+          - "--autofix"
+          - "--indent=4"
+          - "--no-sort-keys"
+      - id: check-merge-conflict
+      #      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      #      - id: check-xml
+      - id: debug-statements
+      - id: detect-aws-credentials
+        args: [ --allow-missing-credentials ]
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      #      - id: file-contents-sorter
+      - id: fix-byte-order-marker
+      - id: fix-encoding-pragma
+      #      - id: forbid-new-submodules
+      - id: mixed-line-ending
+      #      - id: name-tests-test
+      - id: requirements-txt-fixer
+      #      - id: sort-simple-yaml
+      - id: trailing-whitespace
+
+  ##########################################################################################
+  # Markdown
+  ##########################################################################################
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: markdownlint
+        files: \.(md|mdown|markdown)$
+  #        files: ^README.md$
+
+  ##########################################################################################
+  # EditorConfig
+  ##########################################################################################
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 2.6.1
+    hooks:
+      - id: editorconfig-checker
+        language: python
+        files: ^(ai_investing/|docs/)
+        exclude: (enplain.bst|project_info.tex|fitthesis.cls|\.py|\.ipynb|\.bib)$
+
+  ##########################################################################################
+  # Git
+  ##########################################################################################
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v2.1.1
+    hooks:
+      - id: conventional-pre-commit
+        stages: [ commit-msg ]
+        args: [ ]
+
+  ##########################################################################################
+  # Dockerfile
+  ##########################################################################################
+#    FIXME:
+#    -   repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+#        rev: v0.1.0
+#        hooks:
+#            -   id: dockerfilelint
