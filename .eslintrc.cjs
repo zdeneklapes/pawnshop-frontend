@@ -7,7 +7,7 @@ module.exports = {
   ignorePatterns: [
     '*.js',
     'src/components/ui/*.tsx',
-    // 'src/components/ui/*.ts'
+    'src/components/ui/*.ts'
   ],
   env: {
     browser: true,
