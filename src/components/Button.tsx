@@ -1,8 +1,8 @@
 'use client'
-import {useState} from 'react'
+import { useState } from 'react'
 
 export interface ButtonProps {
-  count: number,
+  count: number
   onClick: () => void
 }
 

@@ -7,8 +7,10 @@ const Nav = () => {
         <h1 className="text-2xl font-bold">Root</h1>
       </Link>
 
-      {["shops"].map((title: string, index: number) => (
-        <Link key={index} href={`/${title}`}>{title}</Link>
+      {['shops'].map((title: string, index: number) => (
+        <Link key={index} href={`/${title}`}>
+          {title}
+        </Link>
       ))}
     </nav>
   )

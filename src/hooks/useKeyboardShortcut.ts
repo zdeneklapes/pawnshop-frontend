@@ -1,31 +1,28 @@
-import {useEffect} from "react";
-import isEscape from "keystroke";
+import { useEffect } from 'react'
+import isEscape from 'keystroke'
 
-type Key = "ctrl" | "shift" | "alt" | string;
+type Key = 'ctrl' | 'shift' | 'alt' | string
 
-export const useKeyboardShortcut = (
-  keys: Key[],
-  callback: () => void
-) => {
+export const useKeyboardShortcut = (keys: Key[], callback: () => void) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
         keys.every(
           (key) =>
-            (key === "ctrl" && event.ctrlKey) ||
-            (key === "shift" && event.shiftKey) ||
-            (key === "alt" && event.altKey) ||
-            (typeof key === "string" && event.key.toLowerCase() === key)
+            (key === 'ctrl' && event.ctrlKey) ||
+            (key === 'shift' && event.shiftKey) ||
+            (key === 'alt' && event.altKey) ||
+            (typeof key === 'string' && event.key.toLowerCase() === key)
         )
       ) {
-        callback();
+        callback()
       }
-    };
+    }
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [keys, callback]);
-};
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [keys, callback])
+}
