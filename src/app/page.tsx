@@ -1,21 +1,21 @@
 'use client'
-import Button from '@/components/Button'
+// import Button from '@/components/Button'
 import {
-  useCallback,
-  useContext,
-  useDebugValue,
-  useDeferredValue,
+  // useCallback,
+  // useContext,
+  // useDebugValue,
+  // useDeferredValue,
   useEffect,
-  useId,
-  useImperativeHandle,
-  useInsertionEffect,
-  useLayoutEffect,
-  useMemo,
-  useReducer,
+  // useId,
+  // useImperativeHandle,
+  // useInsertionEffect,
+  // useLayoutEffect,
+  // useMemo,
+  // useReducer,
   useRef,
   useState,
-  useSyncExternalStore,
-  useTransition,
+  // useSyncExternalStore,
+  // useTransition,
 } from 'react'
 
 export function Test1() {
@@ -32,7 +32,7 @@ export function Test1() {
 
   return (
     <>
-      <input value={name} onChange={(e) => setName(e.target.value)}/>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
       <div>
         My name is {name} and it used to be {prevName.current}
       </div>
@@ -43,7 +43,7 @@ export function Test1() {
 export default function Home(): JSX.Element {
   return (
     <>
-      <Test1/>
+      <Test1 />
     </>
   )
 }
