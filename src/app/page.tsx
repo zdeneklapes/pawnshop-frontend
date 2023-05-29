@@ -32,7 +32,7 @@ export function Test1() {
 
   return (
     <>
-      <input value={name} onChange={(e) => setName(e.target.value)}/>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
       <div>
         My name is {name} and it used to be {prevName.current}
       </div>
@@ -43,7 +43,7 @@ export function Test1() {
 export default function Home(): JSX.Element {
   return (
     <>
-      <Test1/>
+      <Test1 />
     </>
   )
 }
