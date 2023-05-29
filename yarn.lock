@@ -129,10 +129,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@next/env@13.4.4":
-  version "13.4.4"
-  resolved "https://registry.npmjs.org/@next/env/-/env-13.4.4.tgz"
-  integrity sha512-q/y7VZj/9YpgzDe64Zi6rY1xPizx80JjlU2BTevlajtaE3w1LqweH1gGgxou2N7hdFosXHjGrI4OUvtFXXhGLg==
+"@next/env@13.4.5-canary.0":
+  version "13.4.5-canary.0"
+  resolved "https://registry.npmjs.org/@next/env/-/env-13.4.5-canary.0.tgz"
+  integrity sha512-AxYfEv/Cl5GcOybahj9ASqTrvorM6Lfjabl97qycXtt75toEZiviF4iOL5MfUVdUSk0TKAnHEp8nAikQ3zdDwA==
 
 "@next/eslint-plugin-next@13.4.3":
   version "13.4.3"
@@ -141,10 +141,10 @@
   dependencies:
     glob "7.1.7"
 
-"@next/swc-darwin-x64@13.4.4":
-  version "13.4.4"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-13.4.4.tgz"
-  integrity sha512-ZY9Ti1hkIwJsxGus3nlubIkvYyB0gNOYxKrfsOrLEqD0I2iCX8D7w8v6QQZ2H+dDl6UT29oeEUdDUNGk4UEpfg==
+"@next/swc-darwin-x64@13.4.5-canary.0":
+  version "13.4.5-canary.0"
+  resolved "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-13.4.5-canary.0.tgz"
+  integrity sha512-anuwagsZ33bxWGBMXtlA+o9KxmYNAeQ7nSVLaWcwFR9jXL5KIgsE2F0B9IwQU0DVKfHe0njI6QHO5H3tGZfKYw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2858,12 +2858,12 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-next@^13.4.4:
-  version "13.4.4"
-  resolved "https://registry.npmjs.org/next/-/next-13.4.4.tgz"
-  integrity sha512-C5S0ysM0Ily9McL4Jb48nOQHT1BukOWI59uC3X/xCMlYIh9rJZCv7nzG92J6e1cOBqQbKovlpgvHWFmz4eKKEA==
+next@^13.4.5-canary.0:
+  version "13.4.5-canary.0"
+  resolved "https://registry.npmjs.org/next/-/next-13.4.5-canary.0.tgz"
+  integrity sha512-cDH6PtaOZjkiRsPPPCrgkg2d9X/tLAaozOoCSYDVpdXnOk1hi8FYbtkGxxYexcTl1Bd2tVF6uixvi1uhktbmOQ==
   dependencies:
-    "@next/env" "13.4.4"
+    "@next/env" "13.4.5-canary.0"
     "@swc/helpers" "0.5.1"
     busboy "1.6.0"
     caniuse-lite "^1.0.30001406"
@@ -2871,15 +2871,15 @@ next@^13.4.4:
     styled-jsx "5.1.1"
     zod "3.21.4"
   optionalDependencies:
-    "@next/swc-darwin-arm64" "13.4.4"
-    "@next/swc-darwin-x64" "13.4.4"
-    "@next/swc-linux-arm64-gnu" "13.4.4"
-    "@next/swc-linux-arm64-musl" "13.4.4"
-    "@next/swc-linux-x64-gnu" "13.4.4"
-    "@next/swc-linux-x64-musl" "13.4.4"
-    "@next/swc-win32-arm64-msvc" "13.4.4"
-    "@next/swc-win32-ia32-msvc" "13.4.4"
-    "@next/swc-win32-x64-msvc" "13.4.4"
+    "@next/swc-darwin-arm64" "13.4.5-canary.0"
+    "@next/swc-darwin-x64" "13.4.5-canary.0"
+    "@next/swc-linux-arm64-gnu" "13.4.5-canary.0"
+    "@next/swc-linux-arm64-musl" "13.4.5-canary.0"
+    "@next/swc-linux-x64-gnu" "13.4.5-canary.0"
+    "@next/swc-linux-x64-musl" "13.4.5-canary.0"
+    "@next/swc-win32-arm64-msvc" "13.4.5-canary.0"
+    "@next/swc-win32-ia32-msvc" "13.4.5-canary.0"
+    "@next/swc-win32-x64-msvc" "13.4.5-canary.0"
 
 node-domexception@^1.0.0:
   version "1.0.0"

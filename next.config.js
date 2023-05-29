@@ -13,6 +13,13 @@ const nextConfig = {
   eslint: {
     dirs: ['src'],
   },
+  compiler: {
+    styledComponents: true
+    // {
+    // displayName: false,
+    // },
+    // ssr: true,
+  },
 }
 
 module.exports = nextConfig
